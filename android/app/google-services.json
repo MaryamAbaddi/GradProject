@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "579004116235",
+    "project_id": "makanek-c0f6a",
+    "storage_bucket": "makanek-c0f6a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579004116235:android:9e90703b9ba94cfb82c60e",
+        "android_client_info": {
+          "package_name": "com.example.makanek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579004116235-9ctlb0b1p6p27idfo649mp5bed2c95ub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.makanek",
+            "certificate_hash": "870d751ae1735f5629303c51f9c62b1f00e3838c"
+          }
+        },
+        {
+          "client_id": "579004116235-kjlh9dda2vhk5mfq99tholm0gete2ki9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHeUN0_-ZCgFOe7OWjPFqLQ0M2rFRn5PI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579004116235-kjlh9dda2vhk5mfq99tholm0gete2ki9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "579004116235-39r1ecob66pdgqlu997vb9ufo3ifulcq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.makanek"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

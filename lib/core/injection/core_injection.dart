@@ -5,6 +5,7 @@ import 'package:makanek/core/injection/addpost_injection.dart';
 import 'package:makanek/core/injection/avatar_injection.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
+import 'package:makanek/core/injection/services1_injection.dart';
 import 'package:makanek/core/theme/them_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,6 +32,7 @@ Future<void> setupDi() async {
     initAvatarInjection();
     initGetPostInjection();
     initAddPostInjection();
+    initService1Injection();
   } catch (e) {
     print("DI ERROR: $e");
   }

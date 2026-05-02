@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/features/category/domain/Enitity/category_entity.dart';
+import 'package:makanek/features/category/domain/Entity/category_entity.dart';
 import 'package:makanek/features/category/presentation/widgets/category_button.dart';
 
 class Category extends StatelessWidget {
@@ -26,7 +26,7 @@ class Category extends StatelessWidget {
             itemCount: categories.length,
             itemBuilder: (context, index) => CategoryButton(
               imagePath: categories[index].imagePath,
-              title: categories[index].title,
+              title: categories[index].title, route: categories[index].route,
             ),
           ),
         ),

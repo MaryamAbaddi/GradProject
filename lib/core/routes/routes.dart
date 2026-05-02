@@ -4,6 +4,7 @@ import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart'; 
 import 'package:makanek/features/login/presentation/pages/login_screen.dart';
 import 'package:makanek/features/main/presentation/pages/main_container.dart';
 import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.dart';
+import 'package:makanek/features/servicepage1/presentation/page/service1_page.dart';
 import 'package:makanek/features/signup/presentation/pages/signup_screen.dart';
 import 'package:makanek/features/splash/splash.dart';
 import 'package:makanek/features/welcome/welcome_page.dart';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const addPost = '/addPost';
   static const getPost = '/getPost';
   static const main = '/main';
+  static const service1 = '/service1';
 
 
   static Route onGenerateRoute(RouteSettings settings) {
@@ -41,6 +43,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case getPost: 
       return MaterialPageRoute(builder: (_) => const CommunityPage());
+      case service1:
+        return MaterialPageRoute(builder: (_) => const Service1Page());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

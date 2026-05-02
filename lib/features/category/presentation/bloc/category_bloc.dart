@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:makanek/features/category/domain/Enitity/category_entity.dart';
+import 'package:makanek/features/category/domain/Entity/category_entity.dart';
 import 'package:makanek/features/category/domain/usecase/category_usecase.dart';
 
 part 'category_event.dart';

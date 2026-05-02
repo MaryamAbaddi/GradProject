@@ -1,7 +1,8 @@
 
 
 
-import 'package:makanek/features/category/domain/Enitity/category_entity.dart';
+import 'package:makanek/core/routes/routes.dart';
+import 'package:makanek/features/category/domain/Entity/category_entity.dart';
 import 'package:makanek/features/category/domain/repository/category_repo.dart';
 
 class CategoryRepoImp implements CategoryRepo  {
@@ -10,9 +11,9 @@ class CategoryRepoImp implements CategoryRepo  {
     List<CategoryEntity> getCategories()
     {
       return const [
-        CategoryEntity(imagePath: 'assets/images/services.png', title: 'Services'),
-        CategoryEntity(imagePath: 'assets/images/courses.png', title: 'Courses'),
-        CategoryEntity(imagePath: 'assets/images/products.png', title: 'Products')
+        CategoryEntity(imagePath: 'assets/images/services.png', title: 'Services', route: AppRoutes.service1),
+        CategoryEntity(imagePath: 'assets/images/courses.png', title: 'Courses', route: ''),
+        CategoryEntity(imagePath: 'assets/images/products.png', title: 'Products', route: '')
       ];
     }
   

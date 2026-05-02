@@ -9,8 +9,10 @@ class CategoryButton extends StatelessWidget {
 
   final String imagePath;
   final String title;
+  final String route;
 
   const CategoryButton({super.key,
+  required this.route,
   required this.imagePath,
   required this.title});
 
@@ -18,6 +20,7 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context)
   {
     return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, route),
       child:Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24), 
         child: Column( children: [

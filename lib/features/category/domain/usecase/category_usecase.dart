@@ -3,7 +3,7 @@
 
 
 
-import 'package:makanek/features/category/domain/Enitity/category_entity.dart';
+import 'package:makanek/features/category/domain/Entity/category_entity.dart';
 import 'package:makanek/features/category/domain/repository/category_repo.dart';
 
 class CategoryUsecase  {

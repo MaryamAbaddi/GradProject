@@ -85,6 +85,13 @@ flutter:
     - assets/images/services.png
     - assets/images/products.png
     - assets/images/courses.png
+    - assets/images/baby.png
+    - assets/images/cleaning.png
+    - assets/images/foodpot.png
+    - assets/images/jar.png
+    - assets/images/shirt.png
+    - assets/images/teaching.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

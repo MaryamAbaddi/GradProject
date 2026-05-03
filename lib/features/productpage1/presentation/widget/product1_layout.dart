@@ -7,7 +7,6 @@ import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_card.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/productpage1/domain/entity/product1_entity.dart';
-import 'package:makanek/features/servicepage1/domain/entity/service1_entity.dart';
 
 class Product1Layout extends StatelessWidget {
   final List<Product1Entity> products;

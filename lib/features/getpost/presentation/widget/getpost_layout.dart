@@ -4,7 +4,7 @@ import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
-import 'package:makanek/features/addpost/presentation/widget/addpost_layout.dart';
+import 'package:makanek/features/addpost/presentation/pages/addpost_page.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
@@ -59,7 +59,7 @@ class CommunityLayout extends StatelessWidget {
         content: const SizedBox(
           height: 300,
           width: double.maxFinite,
-          child: AddPostForm(),
+          child: AddPostBottomSheet(),
         ),
       ),
     );
@@ -83,7 +83,7 @@ class CommunityLayout extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppTitle(
-                      size: 35,
+                    size: 35,
                       title: 'Community',
                       weight: FontWeight.bold,
                       titleColor: colors.primary,
@@ -100,12 +100,17 @@ class CommunityLayout extends StatelessWidget {
 
             final post = posts[index - 1];
 
-            return Card(
+            return GestureDetector(
+              onTap: (){},
+            child:
+             Card(
               key: ValueKey(index),
               color: Colors.white,
               margin: const EdgeInsets.only(bottom: 12),
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),
+              side: BorderSide(color: colors.primary, width: 1)
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -133,7 +138,7 @@ class CommunityLayout extends StatelessWidget {
                             Getname(
                               showHi: false,
                               fontWeight: FontWeight.bold,
-                              textSize: 12,
+                              textSize: 16,
                               textColor: colors.primary,
                             ),
                             AppText(text: timeago.format(post.createdAt)),
@@ -150,6 +155,7 @@ class CommunityLayout extends StatelessWidget {
                             text: post.body,
                             fontWeight: FontWeight.w400,
                             textSize: 14,
+                            textAlign: TextAlign.start,
                             textColor: colors.onSurface.withValues(alpha: 0.7),
                           ),
                         ),
@@ -188,11 +194,12 @@ class CommunityLayout extends StatelessWidget {
                         Icon(Icons.favorite_border, color: colors.onSurface),
                         const SizedBox(width: 16),
                         Icon(Icons.comment_outlined, color: colors.onSurface),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              )
             );
           },
         );

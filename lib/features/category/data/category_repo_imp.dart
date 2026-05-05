@@ -12,8 +12,8 @@ class CategoryRepoImp implements CategoryRepo  {
     {
       return const [
         CategoryEntity(imagePath: 'assets/images/services.png', title: 'Services', route: AppRoutes.service1),
-        CategoryEntity(imagePath: 'assets/images/courses.png', title: 'Courses', route: ''),
-        CategoryEntity(imagePath: 'assets/images/products.png', title: 'Products', route: '')
+        CategoryEntity(imagePath: 'assets/images/courses.png', title: 'Courses', route: AppRoutes.courses1),
+        CategoryEntity(imagePath: 'assets/images/products.png', title: 'Products', route:AppRoutes.product1)
       ];
     }
   

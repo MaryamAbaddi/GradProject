@@ -11,9 +11,11 @@ class AppCard extends StatelessWidget{
   final String imagePath;
   final String title;
   final String body; 
+  final bool flag;
 
   const AppCard({
   super.key, 
+ this.flag = false,
   required this.body,
   required this.imagePath,
   required this.title,
@@ -25,7 +27,7 @@ class AppCard extends StatelessWidget{
         final colors = Theme.of(context).colorScheme;
 
     return SizedBox(
-      height:context.vertical*3,
+      height:context.vertical*2.75,
       child: Card(
         margin: EdgeInsets.all(1),
         shape: RoundedRectangleBorder(
@@ -45,7 +47,11 @@ class AppCard extends StatelessWidget{
           SizedBox(height:15),
         AppTitle(size: 20, title: title, weight: FontWeight.bold, titleColor:Colors.black, textAlign: TextAlign.start),
         AppText(text: body,textAlign: TextAlign.start,textSize: 12,),
-        Row(children: [Spacer(),IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_right_rounded,color: colors.primary,))],)]
+        Row(children: [Spacer(),
+        flag 
+  ? TextButton(onPressed: () {}, child: Button( isText: true,textColor: colors.primary, fontSize: 16, text:'Enroll', borderRadius: 0, buttonWidth: 0, buttonHeight: 0, fontWeight: FontWeight.bold, elevation: 12,))
+  : IconButton(onPressed: () {}, icon: Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary))
+         ],)]
         )
       )]
         

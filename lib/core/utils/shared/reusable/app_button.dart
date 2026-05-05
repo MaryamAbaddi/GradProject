@@ -5,7 +5,7 @@ class Button extends StatelessWidget {
   final Color textColor;
   final double borderRadius;
   final double fontSize;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final String text;
   final double elevation;
   final String? iconPath;

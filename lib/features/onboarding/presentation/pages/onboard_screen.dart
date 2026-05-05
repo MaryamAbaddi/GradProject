@@ -4,6 +4,7 @@ import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/features/onboarding/presentation/bloc/onboard_bloc.dart';
 import 'package:makanek/features/onboarding/presentation/widgets/layout.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class OnboardScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
       body: BlocProvider(
         create: (_) => getIt<OnboardBloc>()..add(const OnboardStarted()),
         child: BlocConsumer<OnboardBloc, OnboardState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is OnboardingPageChanged) {
               currentIndex = state.pageIndex;
               controller.animateToPage(
@@ -46,9 +47,12 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 curve: Curves.fastOutSlowIn,
               );
             }
-            if (state is OnboardingSuccess) {
-             Navigator.pushNamed(context, AppRoutes.welcome);
-            }
+                      if (state is OnboardingSuccess) {
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.setBool('seen_onboarding', true); 
+            if (!mounted) return;
+            Navigator.pushReplacementNamed(context, AppRoutes.welcome); // use replacement
+          }
           },
           buildWhen: (previous, current) => current is OnboardingLoaded,
           builder: (context, state) {

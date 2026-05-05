@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
 import 'package:makanek/features/getpost/presentation/widget/getpost_layout.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
@@ -16,23 +16,25 @@ class CommunityPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) =>
-              getIt<GetpostBloc>()..add(const GetPostsFetched()),
+          create: (_) => getIt<GetpostBloc>()..add(const GetPostsFetched()),
         ),
         BlocProvider(
           create: (_) => getIt<AvatarCubit>()..getAvatar(),
         ),
       ],
       child: Scaffold(
-        backgroundColor: colors.surface,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: colors.surface,
-          title: AppTitle(
-            title: 'Back',
-            size: 20,
-            weight: FontWeight.bold,
-            titleColor: colors.onSurface,
-            textAlign: null,
+          backgroundColor: Colors.white,
+          title: AppText(
+            text: 'Back',
+            textColor: colors.primary,
+            textSize:  20,
+            fontWeight: FontWeight.bold,
+          ),
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.arrow_back_ios, size: 15, color: colors.primary),
           ),
         ),
         body: BlocConsumer<GetpostBloc, GetpostState>(

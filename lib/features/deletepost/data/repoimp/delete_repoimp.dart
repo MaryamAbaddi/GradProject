@@ -3,7 +3,6 @@
 
 
 
-import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/deletepost/data/datasrc/delete_datasrcmeth.dart';
 import 'package:makanek/features/deletepost/domain/repo/delete_repo.dart';
 

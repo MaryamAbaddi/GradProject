@@ -3,7 +3,6 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/deletepost/data/datasrc/delete_datasrcmeth.dart';
 
 class DeleteDatasrcimp implements DeleteDatasrcmeth{

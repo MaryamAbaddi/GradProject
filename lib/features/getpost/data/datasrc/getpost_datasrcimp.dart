@@ -42,7 +42,8 @@ class GetpostDatasrcimp implements GetpostDatasrcmeth {
         id: doc.id,
         body: data['content'],
         imageUrl: data['ImageURL'],
-        createdAt: (data['CreatedAt'] as Timestamp).toDate(),
+        createdAt: (data['CreatedAt'] as Timestamp).toDate(), 
+        uid: data['userId'],
       );
     }).toList();
   }

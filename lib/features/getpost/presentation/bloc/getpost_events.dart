@@ -13,3 +13,8 @@ abstract class GetpostEvent extends Equatable {
 class GetPostsFetched extends GetpostEvent {
   const GetPostsFetched();
 }
+
+class DeletePostEvent extends GetpostEvent{
+  final String postId;
+  const DeletePostEvent({required this.postId});
+}

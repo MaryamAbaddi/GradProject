@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
@@ -6,6 +7,8 @@ import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/addpost/presentation/pages/addpost_page.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
+import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
+import 'package:makanek/features/postdetailpage/presentation/widget/postdetailpage.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';
@@ -101,7 +104,12 @@ class CommunityLayout extends StatelessWidget {
             final post = posts[index - 1];
 
             return GestureDetector(
-              onTap: (){},
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PostDetailPage(post: post),
+                ),
+              ),
             child:
              Card(
               key: ValueKey(index),
@@ -132,6 +140,7 @@ class CommunityLayout extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 8),
+                        Row(children:[
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -142,6 +151,22 @@ class CommunityLayout extends StatelessWidget {
                               textColor: colors.primary,
                             ),
                             AppText(text: timeago.format(post.createdAt)),
+                            const Spacer(),
+                            if(post.uid == FirebaseAuth.instance.currentUser?.uid)
+                            PopupMenuButton<String>(icon: Icon(Icons.more_vert,color: Colors.black,),
+                            onSelected: (value){
+                              if(value == 'delete')
+                              {
+                                context.read<GetpostBloc>().add(DeletePostEvent(postId: post.id));
+                              }
+                            }
+
+
+                            ,itemBuilder: (_) => [
+                            PopupMenuItem(value:'delete',child: Text('delete')),
+                            PopupMenuItem(value:'edit',child: Text('edit')),
+
+                          ],)
                           ],
                         ),
                       ],
@@ -194,11 +219,13 @@ class CommunityLayout extends StatelessWidget {
                         Icon(Icons.favorite_border, color: colors.onSurface),
                         const SizedBox(width: 16),
                         Icon(Icons.comment_outlined, color: colors.onSurface),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ]
                 ),
+               )
               )
             );
           },

@@ -46,7 +46,15 @@ class _SignUpFormState extends State<SignUpForm> {
     final colors = Theme.of(context).colorScheme;
     return Form(
       key: _formKey,
-      child: Padding(
+      child: SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+    child: ConstrainedBox(
+    constraints: BoxConstraints(
+    minHeight: MediaQuery.of(context).size.height,
+    ),
+    child: IntrinsicHeight( 
+      child:
+      Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.horizontal,
           vertical: context.vertical,
@@ -147,6 +155,9 @@ class _SignUpFormState extends State<SignUpForm> {
           ],
         ),
       ),
+    )
+    )
+    )
     );
   }
 }

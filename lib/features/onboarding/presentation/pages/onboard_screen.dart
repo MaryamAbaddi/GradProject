@@ -51,6 +51,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             final prefs = await SharedPreferences.getInstance();
             await prefs.setBool('seen_onboarding', true); 
             if (!mounted) return;
+            // ignore: use_build_context_synchronously
             Navigator.pushReplacementNamed(context, AppRoutes.welcome); // use replacement
           }
           },

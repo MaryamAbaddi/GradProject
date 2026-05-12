@@ -26,6 +26,7 @@ class UserDropdownMenu extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           value: 'profile',
+          onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.editProfile),
           child: Row(children: [
             Icon(Symbols.person, weight: 500, size: 20),
             AppText(text: 'profile', fontWeight: FontWeight.w400, textColor: colors.primary),

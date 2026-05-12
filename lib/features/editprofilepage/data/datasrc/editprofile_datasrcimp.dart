@@ -18,7 +18,8 @@ class EditprofileDatasrcimp implements EditprofileDatameth{
   Future<EditprofileOutput> editProfile(EditprofileInput input) async {
     final result = FirebaseAuth.instance.currentUser!.uid;
     await firestore.collection('users').doc(result).update({
-      'UserName' :input.name
+      'UserName' :input.name,
+      'Email':input.email
     });
     final doc = await firestore.collection('users').doc(result).get();
 

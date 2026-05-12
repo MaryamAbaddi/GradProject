@@ -4,5 +4,6 @@
 
 class EditprofileInput {
   final String name;
-  EditprofileInput({required this.name});
+  final String email;
+  EditprofileInput({required this.name,required this.email});
 }

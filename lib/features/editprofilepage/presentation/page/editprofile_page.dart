@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
+import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/features/editprofilepage/presentation/bloc/editpage_bloc.dart';
 import 'package:makanek/features/editprofilepage/presentation/bloc/editpage_state.dart';
 import 'package:makanek/features/editprofilepage/presentation/bloc/editprofile_events.dart';
@@ -22,7 +23,9 @@ class EditprofilePage extends StatelessWidget {
         builder: (context, state){
         if(state is EditProfileLoading)
         {
-          return CircularProgressIndicator();
+            return Scaffold(
+    body: Center(
+      child: CircularProgressIndicator(),));
         }
         else if(state is EditProfileLoaded)
         {
@@ -34,9 +37,8 @@ class EditprofilePage extends StatelessWidget {
         ,listener: (context, state) {
             if(state is EditProfileSuccess)
             {
-             Navigator.pop(context);
+             Navigator.pushReplacementNamed(context, AppRoutes.main);
             }
-          
         },
         ),        
       );

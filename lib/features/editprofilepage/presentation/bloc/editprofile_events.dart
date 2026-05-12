@@ -18,6 +18,7 @@ class EditProfileiInit extends EditprofileEvents{
 }
 class EditProfileSubmitted extends EditprofileEvents{
   final String name;
-  const  EditProfileSubmitted({required this.name});
+  final String email;
+  const  EditProfileSubmitted({required this.name,required this.email});
 }
 

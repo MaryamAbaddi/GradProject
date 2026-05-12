@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makanek/features/coursepage1/presentation/page/course1_page.dart';
+import 'package:makanek/features/editprofilepage/presentation/page/editprofile_page.dart';
 import 'package:makanek/features/home/presentation/widgets/homepage_layout.dart';
 import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart'; // 👈 fix this
 import 'package:makanek/features/login/presentation/pages/login_screen.dart';
@@ -25,6 +26,7 @@ class AppRoutes {
   static const service1 = '/service1';
   static const product1 = '/product1';
   static const courses1 = '/courses1';
+  static const editProfile = '/editProfile';
 
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -52,6 +54,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const Product1Page());
       case courses1:
         return MaterialPageRoute(builder: (_) => const Course1Page());
+      case editProfile:
+        return MaterialPageRoute(builder: (_) => const EditprofilePage());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

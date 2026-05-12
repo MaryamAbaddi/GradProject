@@ -10,6 +10,8 @@ class InputFeild extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffix;
   final void Function(String)? onChanged;
+  final double? width;
+  final FocusNode? focusNode;
 
   const InputFeild({
     super.key,
@@ -22,28 +24,36 @@ class InputFeild extends StatelessWidget {
     this.validator,
     this.suffix,
     this.onChanged,
+    this.width,
+    this.focusNode
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      textInputAction: action,
-      obscureText: obscureText,
-      readOnly: readOnly,
-      validator: validator,
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        labelText: text,
-        suffixIcon: suffix,
-        labelStyle: GoogleFonts.inter(color: colors.onSurface),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: colors.primary, width: 1.5),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: colors.primary, width: 2),
+    return SizedBox(
+      width: width,
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        focusNode: focusNode,
+        textInputAction: action,
+        obscureText: obscureText,
+        readOnly: readOnly,
+        validator: validator,
+        onChanged: onChanged,
+        decoration: InputDecoration(
+          labelText: text,
+          suffixIcon: suffix,
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(vertical: 8),
+          labelStyle: GoogleFonts.inter(color: colors.onSurface),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: colors.primary, width: 1.5),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: colors.primary, width: 2),
+          ),
         ),
       ),
     );

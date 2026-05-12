@@ -21,7 +21,7 @@ class EditProfilePageBloc extends Bloc<EditprofileEvents, EditProfilePageState> 
     on<EditProfileSubmitted>((event, emit) async {
       emit(const EditProfileLoading());
       try {
-        await usecase(EditprofileInput(name: event.name));
+        await usecase(EditprofileInput(name: event.name,email: event.email));
         emit(const EditProfileSuccess());
       } catch (e) {
         emit(EditProfileError(message: e.toString()));

@@ -6,6 +6,6 @@ import 'package:makanek/features/editprofilepage/domain/entity/editprofile_input
 import 'package:makanek/features/editprofilepage/domain/entity/editprofile_output.dart';
 
 abstract class EditprofileDatameth {
-  
   Future<EditprofileOutput> editProfile(EditprofileInput input);
+  Future<EditprofileOutput> getProfile();
 }

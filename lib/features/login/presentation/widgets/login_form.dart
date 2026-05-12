@@ -28,7 +28,15 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return Padding(
+    return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+    child: ConstrainedBox(
+    constraints: BoxConstraints(
+    minHeight: MediaQuery.of(context).size.height,
+    ),
+    child: IntrinsicHeight( 
+      child:
+    Padding(
       padding: EdgeInsets.symmetric(
         horizontal: context.horizontal,
         vertical: context.vertical,
@@ -126,13 +134,16 @@ class _LoginFormState extends State<LoginForm> {
                     fontWeight: FontWeight.bold,
                     textSize: 14,
                     textColor: colors.onSurface,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      )
+    )
+    )
     );
   }
 }

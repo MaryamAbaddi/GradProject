@@ -11,10 +11,17 @@ abstract class GetpostEvent extends Equatable {
 }
 
 class GetPostsFetched extends GetpostEvent {
-  const GetPostsFetched();
+  final bool isOffline;
+  const GetPostsFetched({this.isOffline = false});
 }
 
 class DeletePostEvent extends GetpostEvent{
   final String postId;
   const DeletePostEvent({required this.postId});
+}
+
+class EditPostEvent extends GetpostEvent {
+  final String postId;
+  final String newBody;
+  const EditPostEvent({required this.postId, required this.newBody});
 }

@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:makanek/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:makanek/core/injection/addpost_injection.dart';
 import 'package:makanek/core/injection/avatar_injection.dart';
 import 'package:makanek/core/injection/course1_injection.dart';
+import 'package:makanek/core/injection/editprofile_injection.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
 import 'package:makanek/core/injection/product1_injection.dart';
 import 'package:makanek/core/injection/services1_injection.dart';
 import 'package:makanek/core/theme/them_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:makanek/core/injection/login_injection.dart';
 import 'package:makanek/core/injection/category_injection.dart';
 import 'package:makanek/core/injection/onboard_injection.dart';
@@ -24,8 +25,8 @@ Future<void> setupDi() async {
     getIt.registerSingleton(prefs);
     getIt.registerSingleton(FirebaseAuth.instance);
     getIt.registerLazySingleton(() => FirebaseFirestore.instance);
+    getIt.registerLazySingleton<ConnectivityCubit> (() => ConnectivityCubit());
     getIt.registerSingleton<ThemeCubit>(ThemeCubit(prefs)); 
-
     initLoginInjection();
     initSignupInjection();
     initOnboardingInjection();
@@ -37,6 +38,7 @@ Future<void> setupDi() async {
     initService1Injection();
     initProduct1Injection();
     initCourse1Injection();
+    initEditProfileinjection();
   } catch (e) {
     print("DI ERROR: $e");
   }

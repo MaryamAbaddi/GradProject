@@ -6,9 +6,10 @@ class InputFeild extends StatelessWidget {
   final TextInputAction action;
   final String text;
   final bool obscureText;
+  final bool readOnly;
   final String? Function(String?)? validator;
   final Widget? suffix;
-  final void Function(String)? onChanged; // 👈 add this
+  final void Function(String)? onChanged;
 
   const InputFeild({
     super.key,
@@ -17,9 +18,10 @@ class InputFeild extends StatelessWidget {
     required this.text,
     required this.action,
     this.obscureText = false,
+    this.readOnly = false,
     this.validator,
     this.suffix,
-    this.onChanged, // 👈 add this
+    this.onChanged,
   });
 
   @override
@@ -30,8 +32,9 @@ class InputFeild extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: action,
       obscureText: obscureText,
+      readOnly: readOnly,
       validator: validator,
-      onChanged: onChanged, // 👈 add this
+      onChanged: onChanged,
       decoration: InputDecoration(
         labelText: text,
         suffixIcon: suffix,

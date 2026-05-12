@@ -41,3 +41,17 @@ class DeletePostError extends GetpostState{
   final String message;
   const DeletePostError({required this.message});
 }
+
+
+class EditPostLoading extends GetpostState {
+  const EditPostLoading();
+}
+class EditPostSuccess extends GetpostState {
+  const EditPostSuccess();
+
+}
+
+class EditPostError extends GetpostState {
+  final String message;
+  const EditPostError({required this.message});
+}

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/connectivity/cubit/connectivity_cubit.dart';
+import 'package:makanek/core/connectivity/cubit/connectivity_state.dart';
 import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
@@ -12,11 +14,14 @@ class CommunityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final isOffline = context.read<ConnectivityCubit>().state 
+        is ConnectivityDisconnected;
 
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => getIt<GetpostBloc>()..add(const GetPostsFetched()),
+          create: (_) => getIt<GetpostBloc>()
+            ..add(GetPostsFetched(isOffline: isOffline)),
         ),
         BlocProvider(
           create: (_) => getIt<AvatarCubit>()..getAvatar(),
@@ -29,7 +34,7 @@ class CommunityPage extends StatelessWidget {
           title: AppText(
             text: 'Back',
             textColor: colors.primary,
-            textSize:  20,
+            textSize: 20,
             fontWeight: FontWeight.bold,
           ),
           leading: IconButton(
@@ -54,6 +59,15 @@ class CommunityPage extends StatelessWidget {
 
             if (state is GetpostSuccess) {
               return CommunityLayout(posts: state.posts);
+            }
+
+            if (state is DeletePostLoading ||
+                state is DeletePostSuccess ||
+                state is EditPostLoading ||
+                state is EditPostSuccess) {
+              return Center(
+                child: CircularProgressIndicator(color: colors.primary),
+              );
             }
 
             return const SizedBox();

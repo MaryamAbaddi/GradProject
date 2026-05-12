@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
+import 'package:makanek/core/notification/notification_service.dart';
 import 'package:makanek/features/addpost/presentation/bloc/addpost_bloc.dart';
 import 'package:makanek/features/addpost/presentation/widget/addpost_layout.dart';
 
@@ -20,9 +21,9 @@ class AddPostBottomSheet extends StatelessWidget {
         child: BlocConsumer<AddpostBloc, AddpostState>(
           listener: (context, state) {
             if (state is AddpostSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Post added successfully!')),
-              );
+              NotificationService.showNotification(
+              title: 'post Published',
+              body: 'Your post was added successfully! ');
               Navigator.pop(context);
             }
 

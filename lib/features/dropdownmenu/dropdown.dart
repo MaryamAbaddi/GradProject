@@ -1,10 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class UserDropdownMenu extends StatelessWidget {
   const UserDropdownMenu({super.key});
 
+
+  Future<void> logout(BuildContext context) async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.pushNamedAndRemoveUntil(
+    context,
+    AppRoutes.logIn,
+    (route) => false, 
+  );
+}
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -22,9 +33,7 @@ class UserDropdownMenu extends StatelessWidget {
         ),
         PopupMenuItem(
           value: 'logout',
-          onTap: () {
-            // your logout logic here
-          },
+          onTap: () => logout(context),
           child: Row(children: [
             Icon(Symbols.logout, weight: 500, size: 20, color: colors.primary),
             SizedBox(width: 8),

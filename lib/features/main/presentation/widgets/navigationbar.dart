@@ -15,9 +15,9 @@ class AppNavigationBar extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     return BottomNavigationBar(
       onTap: onTap,
-      elevation: 8,
+      elevation: 20,
       currentIndex: currentIndex,
-      backgroundColor: colors.surface,
+      backgroundColor: Colors.black,
       selectedItemColor: colors.primary,
       unselectedItemColor: Colors.grey,
       items: [

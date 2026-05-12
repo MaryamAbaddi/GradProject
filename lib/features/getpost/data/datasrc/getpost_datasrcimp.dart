@@ -40,8 +40,8 @@ class GetpostDatasrcimp implements GetpostDatasrcmeth {
       final data = doc.data();
       return OutputEntity(
         id: doc.id,
-        body: data['content'],
-        imageUrl: data['ImageURL'],
+        body: data['content'] as String? ?? '',
+       imageUrl: data['ImageURL'],
         createdAt: (data['CreatedAt'] as Timestamp).toDate(), 
         uid: data['userId'],
       );

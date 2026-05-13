@@ -13,7 +13,7 @@ class GetserviceDatasrcimp  implements GetserviceDatasrcmeth{
 
  @override
   Future<List<OutputGetservice>> getService() async{
-  final snapshot = await firestore.collection('General').orderBy('CreatedAt', descending: true).get();
+  final snapshot = await firestore.collection('General').orderBy('date', descending: true).get();
   return snapshot.docs.map((doc){
     final data = doc.data();
     final dt = (data['date'] as Timestamp).toDate();

@@ -21,7 +21,8 @@ class GetserviceBloc extends Bloc<GetserviceEvents,GetserviceState>{
     }
     catch(e){
        emit(ErrorGetService(message: e.toString()));
-    }
-  });
+      }
+      }
+    );
   }
 }

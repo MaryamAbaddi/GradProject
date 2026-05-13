@@ -8,6 +8,7 @@ import 'package:makanek/core/injection/course1_injection.dart';
 import 'package:makanek/core/injection/editprofile_injection.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
+import 'package:makanek/core/injection/getservice_injection.dart';
 import 'package:makanek/core/injection/product1_injection.dart';
 import 'package:makanek/core/injection/services1_injection.dart';
 import 'package:makanek/core/theme/them_cubit.dart';
@@ -39,6 +40,7 @@ Future<void> setupDi() async {
     initProduct1Injection();
     initCourse1Injection();
     initEditProfileinjection();
+    initGetServiceInjection();
   } catch (e) {
     print("DI ERROR: $e");
   }

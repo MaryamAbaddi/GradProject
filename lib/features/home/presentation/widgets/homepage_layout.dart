@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage> {
               Padding(
               padding: EdgeInsets.symmetric(horizontal: context.horizontal*0.5),
               child:Row(children: [
-              Getname(showHi: true,
+              Getname(
+              showHi: true,
               fontWeight: FontWeight.bold,
               textSize: 30,
               textColor: colors.primary

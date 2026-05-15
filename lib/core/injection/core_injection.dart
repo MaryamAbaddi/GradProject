@@ -7,7 +7,7 @@ import 'package:makanek/core/injection/addpost_injection.dart';
 import 'package:makanek/core/injection/avatar_injection.dart';
 import 'package:makanek/core/injection/course1_injection.dart';
 import 'package:makanek/core/injection/editprofile_injection.dart';
-import 'package:makanek/core/injection/addproduct_injection.dart';
+import 'package:makanek/core/injection/gaddproduct_injection.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
 import 'package:makanek/core/injection/getproduct_injection.dart';

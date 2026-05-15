@@ -1,0 +1,172 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/app_text.dart';
+import 'package:makanek/core/utils/shared/reusable/product_dialog.dart';
+import 'package:makanek/features/addproduct/domain/entity/addproduct_output.dart';
+import 'package:makanek/features/getname/presentation/pages/getname.dart';
+import 'package:makanek/features/getproduct/presentation/bloc/getproduct_bloc.dart';
+import 'package:makanek/features/getproduct/presentation/bloc/getproduct_event.dart';
+import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
+import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:cached_network_image/cached_network_image.dart';
+
+class ProductsLayout extends StatelessWidget {
+  final List<AddproductOutput> products;
+
+  const ProductsLayout({
+    super.key,
+    required this.products,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppTitle(
+                size: 35,
+                title: 'Products',
+                weight: FontWeight.bold,
+                titleColor: colors.primary,
+                textAlign: TextAlign.start,
+              ),
+              IconButton(
+                icon: Icon(Icons.add_circle_rounded, color: colors.primary, size: 50),
+                onPressed: () => ProductDialog.showAddProductDialog(context),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: BlocBuilder<AvatarCubit, AvatarEntity?>(
+            builder: (context, avatarState) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context.read<GetproductBloc>().add(const GetproductFetched());
+                },
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(16),
+                  cacheExtent: 500,
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    final product = products[index];
+
+                    return Card(
+                      key: ValueKey(index),
+                      color: Colors.white,
+                      margin: const EdgeInsets.only(bottom: 12),
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: colors.primary, width: 1),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // header row
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: colors.primary,
+                                  child: Text(
+                                    avatarState?.initial ?? '?',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Getname(
+                                        showHi: false,
+                                        fontWeight: FontWeight.bold,
+                                        textSize: 16,
+                                        textColor: colors.primary,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            // body row
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: AppText(
+                                    text: product.body,
+                                    fontWeight: FontWeight.w400,
+                                    textSize: 14,
+                                    textAlign: TextAlign.start,
+                                    textColor: colors.onSurface.withValues(alpha: 0.7),
+                                  ),
+                                ),
+                                if (product.imageUrl != null && product.imageUrl!.trim().isNotEmpty) ...[
+                                  const SizedBox(width: 8),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: CachedNetworkImage(
+                                      imageUrl: product.imageUrl!.trim(),
+                                      height: 80,
+                                      width: 80,
+                                      fit: BoxFit.cover,
+                                      memCacheHeight: 200,
+                                      memCacheWidth: 200,
+                                      fadeInDuration: Duration.zero,
+                                      fadeOutDuration: Duration.zero,
+                                      placeholder: (context, url) => const SizedBox(
+                                        height: 80,
+                                        width: 80,
+                                        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                                      ),
+                                      errorWidget: (context, url, error) => Container(
+                                        height: 80,
+                                        width: 80,
+                                        color: Colors.grey.shade200,
+                                        child: const Icon(Icons.broken_image),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Icon(Icons.favorite_border, color: colors.onSurface),
+                                const SizedBox(width: 16),
+                                Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}

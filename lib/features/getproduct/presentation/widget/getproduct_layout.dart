@@ -9,7 +9,6 @@ import 'package:makanek/features/getproduct/presentation/bloc/getproduct_bloc.da
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_event.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductsLayout extends StatelessWidget {

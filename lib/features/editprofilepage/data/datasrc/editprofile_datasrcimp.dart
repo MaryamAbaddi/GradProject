@@ -25,6 +25,7 @@ class EditprofileDatasrcimp implements EditprofileDatameth{
 
     return EditprofileOutput(email:doc.data()!['Email'] , name:doc.data()!['UserName']);
   }
+  @override
   Future<EditprofileOutput> getProfile() async
   {
     final uid = FirebaseAuth.instance.currentUser!.uid;

@@ -9,6 +9,8 @@ import 'package:makanek/features/getservice/presentation/widget/getservice_layou
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 
 class GetservicePage extends StatelessWidget {
+  const GetservicePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;

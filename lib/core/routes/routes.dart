@@ -7,7 +7,6 @@ import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart';
 import 'package:makanek/features/login/presentation/pages/login_screen.dart';
 import 'package:makanek/features/main/presentation/pages/main_container.dart';
 import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.dart';
-import 'package:makanek/features/productpage1/presentation/page/product1_page.dart';
 import 'package:makanek/features/signup/presentation/pages/signup_screen.dart';
 import 'package:makanek/features/splash/splash.dart';
 import 'package:makanek/features/welcome/welcome_page.dart';
@@ -50,8 +49,6 @@ class AppRoutes {
       return MaterialPageRoute(builder: (_) => const CommunityPage());
       case service:
         return MaterialPageRoute(builder: (_) =>  GetservicePage());
-      case product1:
-        return MaterialPageRoute(builder: (_) => const Product1Page());
       case courses1:
         return MaterialPageRoute(builder: (_) => const Course1Page());
       case editProfile:

@@ -2,6 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
+import 'package:makanek/features/addproduct/domain/entity/addproduct_output.dart';
 import 'package:makanek/features/deletepost/domain/usecase/delete_usecase.dart';
 import 'package:makanek/features/editpost/domain/usecase/edit_usecase.dart';
 import 'package:makanek/features/getpost/domain/usecase/getpost_usecase.dart';

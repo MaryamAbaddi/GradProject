@@ -159,12 +159,11 @@ class CommunityLayout extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 12),
-                              // actions row
                               Row(
                                 children: [
                                   Icon(Icons.favorite_border, color: colors.onSurface),
                                   const SizedBox(width: 16),
-                                  Icon(Icons.comment_outlined, color: colors.onSurface),
+                                  Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
                                 ],
                               ),
                             ],

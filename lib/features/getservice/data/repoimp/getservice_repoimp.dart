@@ -1,8 +1,8 @@
 
 
 
+import 'package:makanek/features/addservice/domain/entity/addservice_output.dart';
 import 'package:makanek/features/getservice/data/datasrc/getservice_datasrcmeth.dart';
-import 'package:makanek/features/getservice/domain/entity/output_getsrvice.dart';
 import 'package:makanek/features/getservice/domain/repo/getservice_repo.dart';
 
 class GetserviceRepoimp  implements GetserviceRepo{
@@ -11,7 +11,7 @@ class GetserviceRepoimp  implements GetserviceRepo{
 
   
   @override
-  Future<List<OutputGetservice>> getService() async {
+  Future<List<AddserviceOutput>> getService() async {
     return datasrc.getService();
   }
 }

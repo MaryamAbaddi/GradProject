@@ -23,7 +23,7 @@ class AppRoutes {
   static const addPost = '/addPost';
   static const getPost = '/getPost';
   static const main = '/main';
-  static const service = '/service1';
+  static const service = '/service';
   static const product = '/product';
   static const courses1 = '/courses1';
   static const editProfile = '/editProfile';

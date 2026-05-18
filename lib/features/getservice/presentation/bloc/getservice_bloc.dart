@@ -16,10 +16,12 @@ class GetserviceBloc extends Bloc<GetserviceEvents,GetserviceState>{
     emit(LoadingGetService());
     try{
       final service = await usecase.call();
+      print('are you hereeee?');
       emit(SuccessGetService(services: service));
 
     }
     catch(e){
+      print('Error');
        emit(ErrorGetService(message: e.toString()));
       }
       }

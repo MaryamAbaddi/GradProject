@@ -11,4 +11,7 @@ class GetserviceEvents extends Equatable {
 }
 
 
-class GetServiceDataFetch extends GetserviceEvents{}
+class GetServiceDataFetch extends GetserviceEvents{
+
+  
+}

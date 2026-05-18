@@ -2,8 +2,8 @@
 
 
 
-import 'package:makanek/features/getservice/domain/entity/output_getsrvice.dart';
+import 'package:makanek/features/addservice/domain/entity/addservice_output.dart';
 
 abstract class GetserviceRepo {
-  Future<List<OutputGetservice>> getService();
+  Future<List<AddserviceOutput>> getService();
 }

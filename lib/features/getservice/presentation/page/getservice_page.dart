@@ -48,18 +48,14 @@ class GetservicePage extends StatelessWidget {
             ),
           ),
         ), 
-        floatingActionButton:Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.05,), child:
-              FloatingActionButton(
-                onPressed: () {
-                },
-          backgroundColor: colors.primary,
-          shape:CircleBorder(),
-          child: const Icon(Icons.add, color: Colors.white),
-        ),),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: BlocConsumer<GetserviceBloc, GetserviceState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is ErrorGetService) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+            }
+          },
           builder: (context, state) {
             if (state is LoadingGetService) {
               return Center(
@@ -67,12 +63,11 @@ class GetservicePage extends StatelessWidget {
               );
             }
             if (state is SuccessGetService) {
-              return GetserviceLayout(services: state.services);
+              return ServicesLayout(services: state.services);
             }
-            return const SizedBox();
-          },
-        ),
+            return SizedBox();
+          }
       ),
-    );
+    ));
   }
 }

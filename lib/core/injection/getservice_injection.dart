@@ -23,4 +23,5 @@ void initGetServiceInjection() {
   getIt.registerFactory<GetserviceBloc>(
     () => GetserviceBloc(usecase: getIt<GetserviceUsecase>()),
   );
+  
 }

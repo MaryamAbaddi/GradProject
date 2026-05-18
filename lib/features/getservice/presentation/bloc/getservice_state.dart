@@ -3,7 +3,7 @@
 
 
 import 'package:equatable/equatable.dart';
-import 'package:makanek/features/getservice/domain/entity/output_getsrvice.dart';
+import 'package:makanek/features/addservice/domain/entity/addservice_output.dart';
 
 class GetserviceState extends Equatable{
 
@@ -25,7 +25,7 @@ class ErrorGetService extends GetserviceState{
 }
 
 class SuccessGetService extends GetserviceState{
-  final List<OutputGetservice> services;
+  final List<AddserviceOutput> services;
   const SuccessGetService({required this.services});
   @override 
   List<Object?> get props => [services];

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:makanek/core/connectivity/cubit/connectivity_state.dart';
 import 'package:makanek/core/injection/core_injection.dart';
+import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
 import 'package:makanek/features/getpost/presentation/widget/getpost_layout.dart';
@@ -31,17 +32,19 @@ class CommunityPage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: AppText(
-            text: 'Back',
-            textColor: colors.primary,
-            textSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back_ios, size: 15, color: colors.primary),
+          leadingWidth: 90,
+          titleSpacing: 50,
+          leading:  Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: GestureDetector(
+            onTap: () =>  Navigator.pushReplacementNamed(context, AppRoutes.main),
+            child: Row(children: [
+              Icon(Icons.arrow_back_ios, color: colors.primary),
+              AppText(text: 'Back', fontWeight: FontWeight.bold, textColor: colors.primary, textSize: 16),
+            ]),
           ),
         ),
+          ),
         body: BlocConsumer<GetpostBloc, GetpostState>(
           listener: (context, state) {
             if (state is GetpostError) {

@@ -6,10 +6,10 @@
 
 class AddproductOutput {
   final String id;
-  final String? imageUrl;
+  final String imageUrl;
   final String body;
   final String title;
-  final String price;
+  final double price;
 
   const AddproductOutput({
   required this.body,

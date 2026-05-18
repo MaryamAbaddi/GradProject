@@ -12,6 +12,7 @@ class InputFeild extends StatelessWidget {
   final void Function(String)? onChanged;
   final double? width;
   final FocusNode? focusNode;
+  final bool hideBorder; // 👈 add this
 
   const InputFeild({
     super.key,
@@ -25,7 +26,8 @@ class InputFeild extends StatelessWidget {
     this.suffix,
     this.onChanged,
     this.width,
-    this.focusNode
+    this.focusNode,
+    this.hideBorder = false, // 👈 default: border is shown
   });
 
   @override
@@ -48,12 +50,16 @@ class InputFeild extends StatelessWidget {
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 8),
           labelStyle: GoogleFonts.inter(color: colors.onSurface),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: colors.primary, width: 1.5),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: colors.primary, width: 2),
-          ),
+          enabledBorder: hideBorder
+              ? InputBorder.none
+              : UnderlineInputBorder(
+                  borderSide: BorderSide(color: colors.primary, width: 1.5),
+                ),
+          focusedBorder: hideBorder
+              ? InputBorder.none
+              : UnderlineInputBorder(
+                  borderSide: BorderSide(color: colors.primary, width: 2),
+                ),
         ),
       ),
     );

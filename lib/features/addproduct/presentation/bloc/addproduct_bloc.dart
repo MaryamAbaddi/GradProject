@@ -26,7 +26,7 @@ class AddproductBloc extends Bloc<AddproductEvent, AddproductState> {
       try {
         final input = AddproductInput(
           body: event.body,
-          imagePath: event.imageUrl, title: event.title, price: event.title,
+          imagePath: event.imageUrl, title: event.title, price: event.price,
         );
 
         final result = await usecase.calls(input);

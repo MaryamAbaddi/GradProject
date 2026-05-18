@@ -9,6 +9,7 @@ class AppTheme {
       secondary: Color.fromARGB(255, 255, 255, 255),
       onSecondary: Color.fromARGB(255, 86, 31, 31),
       surface: Color.fromARGB(255, 241, 202, 215),
+
     ),
   );
 

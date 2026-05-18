@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/app_feild.dart';
 import 'package:makanek/features/addproduct/presentation/bloc/addproduct_bloc.dart';
 import 'package:makanek/features/addproduct/presentation/bloc/addproduct_events.dart';
 
@@ -25,7 +26,8 @@ class _AddProductFormState extends State<AddProductForm> {
   
   final ImagePicker _picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
-  String? _imagePath;
+  late String _imagePath;  
+  bool _imageSelected = false;
 
   @override
   void dispose() {
@@ -36,10 +38,13 @@ class _AddProductFormState extends State<AddProductForm> {
   }
 
   Future<void> _pickImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery,
+    imageQuality: 80);
     if (image != null) {
+
       setState(() {
         _imagePath = image.path;
+        _imageSelected = true;
       });
     }
   }
@@ -50,22 +55,18 @@ class _AddProductFormState extends State<AddProductForm> {
     return Form(
       key: _formKey,
       child: SizedBox(
-        height: 200,
+        height: 280,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             SizedBox(height: context.spacer),
             InputFeild(
               controller: _titleController,
               text: 'Title',
+              hideBorder: true,
               keyboardType: TextInputType.text,
               action: TextInputAction.next,
-              validator: (value) {
-                if (value == null || value.isEmpty) return 'Title is required';
-                if (value.length < 3) return 'Title must be at least 3 characters';
-                return null;
-              },),
+             ),
             TextField(
               controller: _bodyController,
               keyboardType: TextInputType.multiline,
@@ -74,7 +75,8 @@ class _AddProductFormState extends State<AddProductForm> {
               decoration: InputDecoration(
                 hintText: "Describe your product",
                 hintStyle: TextStyle(
-                  color: colors.primary,
+                  color: Colors.grey,
+
                   fontWeight: FontWeight.w300,
                   fontSize: 14,
                 ),
@@ -82,16 +84,18 @@ class _AddProductFormState extends State<AddProductForm> {
                 border: InputBorder.none,
               ),
             ),
-              InputFeild(
+              AppFeild(
               controller: _priceController,
-              text: 'Price',
+              hintText: 'Price/hr ',
               keyboardType: TextInputType.number,
               action: TextInputAction.done,
               validator: (value) {
                 if (value == null || value.isEmpty) return 'Price is required';
                 if (double.tryParse(value) == null) return 'Enter a valid number';
                 return null;
-              },
+              }, 
+              buttonWidth: context.buttonSize/2, 
+              buttonHeight: context.buttonSizeH,
             ),
             const Spacer(),
             Row(
@@ -111,14 +115,21 @@ class _AddProductFormState extends State<AddProductForm> {
                 SizedBox(width: context.spacer * 4.5),
                 Button(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.read<AddproductBloc>().add(AddproductSubmitted(
+                        if (_formKey.currentState!.validate()) {
+                          if (!_imageSelected) { 
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Please select an image')),
+                            );
+                            return;
+                          }
+                          context.read<AddproductBloc>().add(AddproductSubmitted(
                             imageUrl: _imagePath,
                             body: _bodyController.text,
-                            title:_titleController.text,
-                           price: ''));
-                    }
-                  },
+                            title: _titleController.text,
+                            price: double.parse(_priceController.text),
+                          ));
+                        }
+                      },                
                   textColor: colors.onPrimary,
                   borderRadius: 28,
                   fontSize: 14,

@@ -4,12 +4,12 @@
 
 
 class AddproductInput {
-  final String? imagePath;
+  final String imagePath;
   final String body;
   final String title;
-  final String price;
+  final double price;
 
   
   const AddproductInput({required this.body,
-   this.imagePath, required this.title, required this.price});
+   required this.imagePath, required this.title, required this.price});
 }

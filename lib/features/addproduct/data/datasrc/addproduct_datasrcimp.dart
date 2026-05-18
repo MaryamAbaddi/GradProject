@@ -23,21 +23,22 @@ class AddProductDatasrcimp  implements AddproductDatasrcmeth{
 
   @override
   Future<AddproductOutput> addProduct(AddproductInput input) async {
-    String? imageUrl;
 
-    if(input.imagePath != null)
-     {
+    String imageUrl;
+
+      
       final ref = storage.ref().child('General/${DateTime.now().millisecondsSinceEpoch}');
-      await ref.putFile(File(input.imagePath!));
+      await ref.putFile(File(input.imagePath));
       imageUrl = await ref.getDownloadURL();
-    }
-    final docRef = await firestore.collection('posts').add({
+      
+  
+    final docRef = await firestore.collection('General').add({
       'Title':input.title,
       'description': input.body,
       'ImageURL': imageUrl,
       'OwnerId':uid,
       'price':input.price
     });
-    return AddproductOutput(body: input.body, imageUrl: imageUrl, id: docRef.id, title: input.title, price: input.price);
+    return AddproductOutput(body: input.body, imageUrl: imageUrl, id: docRef.id, title: input.title, price:input.price);
   }
 }

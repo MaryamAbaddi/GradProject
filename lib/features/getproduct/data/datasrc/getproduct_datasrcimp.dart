@@ -15,17 +15,17 @@ class GetproductDatasrcimp implements GetProductDatasrcmeth {
   Future<List<AddproductOutput>> getProduct() async {
     final snapshot = await firestore
         .collection('General')
-        .orderBy('Date', descending: true)
         .get();
 
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return AddproductOutput(
-      id: doc.id,
-      body: data['content'] as String? ?? '',
-      imageUrl: data['ImageURL'],
-      title: data['Title'], price: data['price'],
-      );
+  id: doc.id,
+  body: data['description'] as String? ?? '',
+  imageUrl:data['ImageURL'] as String? ?? '',
+  title: data['Title'],
+  price: (data['price'] as num?)?.toDouble() ?? 0.0,
+);
     }).toList();
   }
 }

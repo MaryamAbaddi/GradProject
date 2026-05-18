@@ -1,13 +1,12 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
-import 'package:makanek/features/addproduct/presentation/page/addproduct_page.dart';
+import 'package:makanek/features/addservice/presentation/page/addservice_page.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';
 
-class ProductDialog {
-  static void showAddProductDialog(BuildContext context) {
+class ServiceDialog {
+  static void showAddServiceDialog(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     showDialog(
       context: context,
@@ -31,7 +30,7 @@ class ProductDialog {
               children: [
                 AppTitle(
                   size: 20,
-                  title: 'Add new product',
+                  title: 'Add new service',
                   weight: FontWeight.w400,
                   titleColor: colors.primary,
                   textAlign: TextAlign.left,
@@ -43,11 +42,10 @@ class ProductDialog {
             Divider(thickness: 0.5, color: colors.onSurface.withValues(alpha: 0.1)),
           ],
         ),
-        content:
-         SizedBox(
+        content: SizedBox(
           height: 300,
           width: double.maxFinite,
-          child: AddproductBottomSheet(),
+          child: AddserviceBottomSheet(),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/core/utils/shared/reusable/product_dialog.dart';
@@ -18,6 +19,8 @@ class ProductsLayout extends StatelessWidget {
     super.key,
     required this.products,
   });
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -60,19 +63,18 @@ class ProductsLayout extends StatelessWidget {
 
                     return Card(
                       key: ValueKey(index),
-                      color: Colors.white,
+                      color: Colors.grey[200],
                       margin: const EdgeInsets.only(bottom: 12),
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
-                        side: BorderSide(color: colors.primary, width: 1),
+                        side: BorderSide(color: Colors.grey[200]!, width: 1),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // header row
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -104,56 +106,84 @@ class ProductsLayout extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 12),
-                            // body row
+                            const SizedBox(height: 8),
+                            const SizedBox(height: 4),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: AppText(
-                                    text: product.body,
-                                    fontWeight: FontWeight.w400,
-                                    textSize: 14,
-                                    textAlign: TextAlign.start,
-                                    textColor: colors.onSurface.withValues(alpha: 0.7),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      AppText(
+                                        text: product.title,
+                                        fontWeight: FontWeight.bold,
+                                        textSize: 16,
+                                        textColor: Colors.black,
+                                      ),
+                                      AppText(
+                                        text: product.body,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 14,
+                                        textAlign: TextAlign.start,
+                                        textColor: colors.onSurface.withValues(alpha: 0.7),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                if (product.imageUrl != null && product.imageUrl!.trim().isNotEmpty) ...[
                                   const SizedBox(width: 8),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: CachedNetworkImage(
-                                      imageUrl: product.imageUrl!.trim(),
-                                      height: 80,
-                                      width: 80,
-                                      fit: BoxFit.cover,
-                                      memCacheHeight: 200,
-                                      memCacheWidth: 200,
-                                      fadeInDuration: Duration.zero,
-                                      fadeOutDuration: Duration.zero,
-                                      placeholder: (context, url) => const SizedBox(
-                                        height: 80,
-                                        width: 80,
-                                        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                                  Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: CachedNetworkImage(
+                                          imageUrl: product.imageUrl!.trim(),
+                                          height: 120,
+                                          width: 120,
+                                          fit: BoxFit.cover,
+                                          memCacheHeight: 300,
+                                          memCacheWidth: 300,
+                                          fadeInDuration: Duration.zero,
+                                          fadeOutDuration: Duration.zero,
+                                          placeholder: (context, url) => const SizedBox(
+                                            height: 120,
+                                            width: 120,
+                                            child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                                          ),
+                                          errorWidget: (context, url, error) => Container(
+                                            height: 80,
+                                            width: 80,
+                                            color: Colors.grey.shade200,
+                                            child: const Icon(Icons.broken_image),
+                                          ),
+                                        ),
                                       ),
-                                      errorWidget: (context, url, error) => Container(
-                                        height: 80,
-                                        width: 80,
-                                        color: Colors.grey.shade200,
-                                        child: const Icon(Icons.broken_image),
+                                      Positioned(
+                                        top: 100,
+                                        right: 8,
+                                        left: 8,
+                                        child: Button(
+                                          onPressed: (){},
+                                          text: 'Add',
+                                          textColor: Colors.white,
+                                          borderRadius: 20,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          elevation: 0,
+                                          buttonWidth: context.buttonSize/4,
+                                          buttonHeight: context.buttonSizeH/1.5,
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ],
-                              ],
                             ),
-                            const SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Icon(Icons.favorite_border, color: colors.onSurface),
-                                const SizedBox(width: 16),
-                                Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
-                              ],
+                            AppText(
+                              text: '${product.price} JD',
+                              fontWeight: FontWeight.w600,
+                              textSize: 14,
+                              textColor: Colors.black,
                             ),
                           ],
                         ),

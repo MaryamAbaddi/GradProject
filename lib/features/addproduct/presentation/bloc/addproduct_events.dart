@@ -12,10 +12,10 @@ abstract class AddproductEvent extends Equatable {
 }
 
 class AddproductSubmitted extends AddproductEvent {
-  final String? imageUrl;
+  final String imageUrl;
   final String body;
   final String title;
-  final String price;
+  final double price;
   const AddproductSubmitted({required this.imageUrl, required this.body, required this.title, required this.price});
   @override
   List<Object?> get props => [imageUrl, body,title,price];

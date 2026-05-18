@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makanek/features/coursepage1/presentation/page/course1_page.dart';
 import 'package:makanek/features/editprofilepage/presentation/page/editprofile_page.dart';
+import 'package:makanek/features/getproduct/presentation/page/getproduct_page.dart';
 import 'package:makanek/features/getservice/presentation/page/getservice_page.dart';
 import 'package:makanek/features/home/presentation/widgets/homepage_layout.dart';
 import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart';
@@ -23,7 +24,7 @@ class AppRoutes {
   static const getPost = '/getPost';
   static const main = '/main';
   static const service = '/service1';
-  static const product1 = '/product1';
+  static const product = '/product';
   static const courses1 = '/courses1';
   static const editProfile = '/editProfile';
 
@@ -47,6 +48,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case getPost: 
       return MaterialPageRoute(builder: (_) => const CommunityPage());
+      case product:
+        return MaterialPageRoute(builder: (_) =>  GetproductPage());
       case service:
         return MaterialPageRoute(builder: (_) =>  GetservicePage());
       case courses1:

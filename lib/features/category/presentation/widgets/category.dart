@@ -18,6 +18,7 @@ class Category extends StatelessWidget {
           height: context.screenHeight*0.18,
           padding: const EdgeInsets.only(top: 16), 
           child: ListView.builder(
+          
             padding: EdgeInsets.symmetric(
               horizontal: (context.screenWidth - (categories.length * context.screenWidth * 0.22)) / 60,
             ),

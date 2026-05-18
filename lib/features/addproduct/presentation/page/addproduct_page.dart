@@ -25,7 +25,9 @@ class AddproductBottomSheet extends StatelessWidget {
               NotificationService.showNotification(
               title: 'Product Published',
               body: 'Your Product was added successfully! ');
-              Navigator.pop(context);
+              if (context.mounted) {  
+                      
+    }
             }
 
             if (state is AddproductError) {

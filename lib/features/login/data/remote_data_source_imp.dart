@@ -7,7 +7,6 @@ import 'package:makanek/features/login/domain/entities.dart';
 class RemoteDataSourceImp implements RemoteDataSouceMeth {
 
   final FirebaseAuth firebaseAuth;
-
   RemoteDataSourceImp({required this.firebaseAuth});
 
   @override

@@ -124,7 +124,7 @@ class _EditprofileLayoutState extends State<EditprofileLayout> {
                 SizedBox(width: context.horizontal),
                 Expanded(
                   child: SizedBox(
-                    height: 45,
+                    height: 50,
                     child: InputFeild(
                       controller: _emailController,
                       focusNode: _emailFocus,

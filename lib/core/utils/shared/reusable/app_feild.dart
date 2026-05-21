@@ -35,7 +35,7 @@ final String? Function(String?)? validator;
       hint: AppText(text: hintText,fontWeight: FontWeight.w400,textColor:Colors.grey,),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide.none
       )
       ),
     ));  

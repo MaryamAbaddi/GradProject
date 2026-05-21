@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
+import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_bloc.dart';
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_event.dart';
@@ -34,7 +35,7 @@ class GetproductPage extends StatelessWidget {
           leading:  Padding(
           padding: const EdgeInsets.only(left: 8),
           child: GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
             child: Row(children: [
               Icon(Icons.arrow_back_ios, color: colors.primary),
               AppText(text: 'Back', fontWeight: FontWeight.bold, textColor: colors.primary, textSize: 16),

@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
+import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_bloc.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_events.dart';
@@ -31,7 +33,7 @@ class GetservicePage extends StatelessWidget {
           leadingWidth: 90,
           titleSpacing: 0,
           leading: GestureDetector(
-            onTap: () => Navigator.pop(context),
+          onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
             child: Padding(
               padding: const EdgeInsets.only(left: 8),
               child: Row(

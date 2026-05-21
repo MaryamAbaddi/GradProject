@@ -15,7 +15,7 @@ class AddserviceDatasrcimp implements AddserviceDatasrcmeth {
     final doc = await firestore.collection('General').add({
       'serviceType': input.serviceType,
       'phoneNumber': input.phoneNumber,
-      'price': input.price,
+      'priceService': input.priceService,
       'OwnerId':uid,
      });
 
@@ -23,7 +23,7 @@ class AddserviceDatasrcimp implements AddserviceDatasrcmeth {
       id: doc.id,
       serviceType: input.serviceType,
       phoneNumber: input.phoneNumber,
-      price: input.price,
+      price: input.priceService,
     );
   }
 }

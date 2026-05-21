@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/core/utils/shared/reusable/service_dialoge.dart';
 import 'package:makanek/features/addservice/domain/entity/addservice_output.dart';
+import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_bloc.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_events.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
@@ -64,39 +66,38 @@ class ServicesLayout extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Stack(
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: colors.primary,
-                                  child: Text(
-                                    avatarState?.initial ?? '?',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 18,
+                                      backgroundColor: colors.primary,
+                                      child: Text(
+                                        avatarState?.initial ?? '?',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    const SizedBox(width: 8),
+                                    Getname(showHi: false),
+                                  ],
                                 ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: AppText(
-                                    text: service.serviceType,
-                                    fontWeight: FontWeight.bold,
-                                    textSize: 16,
-                                    textColor: colors.primary,
-                                  ),
+                                const SizedBox(height: 12),
+                                AppText(
+                                  text: service.serviceType,
+                                  fontWeight: FontWeight.bold,
+                                  textSize: 16,
+                                  textColor: colors.primary,
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                                const SizedBox(height: 4),
                                 Row(
                                   children: [
                                     Icon(Icons.phone_outlined, color: colors.primary, size: 16),
@@ -104,6 +105,7 @@ class ServicesLayout extends StatelessWidget {
                                     AppText(text: service.phoneNumber, textSize: 14),
                                   ],
                                 ),
+                                const SizedBox(height: 4),
                                 Row(
                                   children: [
                                     Icon(Icons.attach_money, color: colors.primary, size: 16),
@@ -111,18 +113,23 @@ class ServicesLayout extends StatelessWidget {
                                     AppText(text: '${service.price} JD', textSize: 14),
                                   ],
                                 ),
-                                Button(
-                                  onPressed: () {},
-                                  text: 'Contact',
-                                  textColor: colors.onPrimary,
-                                  borderRadius: 28,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  elevation: 0,
-                                  buttonWidth: 80,
-                                  buttonHeight: 34,
-                                ),
+                                const SizedBox(height: 34),
                               ],
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Button(
+                                onPressed: () {},
+                                text: 'Book',
+                                textColor: colors.onPrimary,
+                                borderRadius: 28,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                elevation: 0,
+                                buttonWidth: 80,
+                                buttonHeight: 34,
+                              ),
                             ),
                           ],
                         ),

@@ -20,11 +20,11 @@ class GetproductDatasrcimp implements GetProductDatasrcmeth {
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return AddproductOutput(
-  id: doc.id,
-  body: data['description'] as String? ?? '',
-  imageUrl:data['ImageURL'] as String? ?? '',
-  title: data['Title'],
-  price: (data['price'] as num?)?.toDouble() ?? 0.0,
+              id: doc.id,
+              body: data['description'] as String? ?? '',
+              imageUrl:data['ImageURL'] as String? ?? '',
+              title: data['Title'] as String? ?? '',
+              price: (data['price'] as num?)?.toDouble() ?? 0.0,
 );
     }).toList();
   }

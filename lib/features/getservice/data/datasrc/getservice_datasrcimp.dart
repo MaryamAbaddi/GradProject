@@ -18,7 +18,7 @@ class GetserviceDatasrcimp  implements GetserviceDatasrcmeth{
     final data = doc.data();
     return AddserviceOutput(
     phoneNumber: data['phoneNumber'] as String? ?? '',
-    price: (data['price'] as num?)?.toDouble() ?? 0.0,
+    price: (data['priceService'] as num?)?.toDouble() ?? 0.0,
     serviceType: data['serviceType'] as String? ?? '', 
     id: doc.id,);
   }).toList();

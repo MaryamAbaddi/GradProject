@@ -21,6 +21,7 @@ class AuthRemoteDataSrc implements DataSrcMeth {
       final uid = credential.user!.uid;
 
       await firestore.collection('users').doc(uid).set({
+        'uid': uid,
         'UserName': input.username,
         'Email': input.email,
         'Role': 'User',

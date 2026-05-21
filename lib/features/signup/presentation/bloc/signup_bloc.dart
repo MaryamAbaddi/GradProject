@@ -17,7 +17,7 @@ class SignUpBloc extends Bloc<SignupEvent, SignupState> {
         final input = SignUpEntity(
           email: event.email,
           password: event.password,
-          username: event.username,
+          username: event.username, uid: event.uid,
         );
         final result = await signupUsecase(input); 
         emit(SignupSuccess( signupOutEntity: result));

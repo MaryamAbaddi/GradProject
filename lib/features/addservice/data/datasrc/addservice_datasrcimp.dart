@@ -18,6 +18,8 @@ class AddserviceDatasrcimp implements AddserviceDatasrcmeth {
       'priceService': input.priceService,
       'OwnerId':uid,
      });
+     await doc.update({'serviceId': doc.id});
+
 
     return AddserviceOutput(
       id: doc.id,

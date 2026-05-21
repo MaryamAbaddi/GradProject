@@ -1,3 +1,6 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
@@ -6,7 +9,7 @@ import 'package:makanek/core/utils/shared/reusable/post_dialog.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
-import 'package:makanek/features/getpost/presentation/widget/post_popupmenu.dart';
+import 'package:makanek/features/getpost/presentation/widget/postpopup_menu.dart';
 import 'package:makanek/features/postdetailpage/presentation/widget/postdetailpage.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';

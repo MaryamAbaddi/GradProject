@@ -10,7 +10,7 @@ abstract class SignupEvent extends Equatable {
 }
 
 class SignupSubmit extends SignupEvent{
-
+  final String uid;
   final String username;
   final String email;
   final String password;
@@ -18,7 +18,7 @@ class SignupSubmit extends SignupEvent{
   const SignupSubmit({
     required this.username,
      required this.password,
-     required this.email
+     required this.email, required this.uid
   });
 
   @override

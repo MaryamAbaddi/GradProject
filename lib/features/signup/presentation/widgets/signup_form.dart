@@ -21,6 +21,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConfirmController = TextEditingController();
+  final TextEditingController _uidController = TextEditingController();
 
   @override
   void dispose() {
@@ -33,10 +34,12 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _onSubmit() {
      if (_formKey.currentState!.validate()) {
-    context.read<SignUpBloc>().add(SignupSubmit(
+    context.read<SignUpBloc>().add(
+    SignupSubmit(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
-      username: _nameController.text.trim(),
+      username: _nameController.text.trim(), 
+      uid: _uidController.text.trim(),
     ));
   }
   }

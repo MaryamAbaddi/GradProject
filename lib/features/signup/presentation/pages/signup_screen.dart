@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
@@ -23,7 +24,7 @@ class SignupScreen extends StatelessWidget {
           child: BlocConsumer<SignUpBloc, SignupState>(
             listener: (context, state) {
               if (state is SignupSuccess) {
-                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                Navigator.pushReplacementNamed(context, AppRoutes.verify);
               }
               if (state is SignupError) {
                 ScaffoldMessenger.of(context).showSnackBar(

@@ -1,10 +1,3 @@
-
-
-
-
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:makanek/features/getname/data/datasrc/getname_datasrcmeth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:makanek/features/getname/data/datasrc/getname_datasrcmeth.dart';
@@ -25,14 +18,3 @@ class GetnameDatasrcimp implements GetnameDatasrcmeth {
     return GetnameEntity(name: doc['UserName']);
   }
 }
-
-
-/*class GetnameDatasrcimp implements GetnameDatasrcmeth{
-
-  
-  @override
-  Future<GetnameEntity> getname() async {
-    return  GetnameEntity(name: 'Joud!');
-  }
-
-}*/

@@ -53,6 +53,8 @@ dependencies:
   flutter_local_notifications: ^18.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  dotted_border: ^2.1.0
+
 
 
 
@@ -100,6 +102,9 @@ flutter:
     - assets/images/teaching.png
     - assets/images/firstaid.png
     - assets/images/loveletter.png
+    - assets/images/verify.png
+
+
 
 
 

@@ -10,6 +10,8 @@ import 'package:makanek/features/main/presentation/pages/main_container.dart';
 import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.dart';
 import 'package:makanek/features/signup/presentation/pages/signup_screen.dart';
 import 'package:makanek/features/splash/splash.dart';
+import 'package:makanek/features/verificationpage/presentation/page/verifybyid_page.dart';
+import 'package:makanek/features/waitonverification/waitonveriifcation.dart';
 import 'package:makanek/features/welcome/welcome_page.dart';
 
 class AppRoutes {
@@ -27,6 +29,10 @@ class AppRoutes {
   static const product = '/product';
   static const courses1 = '/courses1';
   static const editProfile = '/editProfile';
+  static const verify  = '/verify';
+    static const verifyId  = '/verifyId';
+
+  
 
   static Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -56,6 +62,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const Course1Page());
       case editProfile:
         return MaterialPageRoute(builder: (_) => const EditprofilePage());
+      case verify:
+        return MaterialPageRoute(builder: (_) => const Waitonveriifcation());
+      case verifyId:
+        return MaterialPageRoute(builder: (_) => const VerifybyidPage());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

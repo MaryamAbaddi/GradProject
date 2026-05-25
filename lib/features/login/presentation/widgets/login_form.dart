@@ -55,7 +55,7 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height:context.spacer),
           InputFeild(
             controller: _emailController,
-            text: 'Email/Username',
+            text: 'Email',
             keyboardType: TextInputType.emailAddress,
             action: TextInputAction.next,
           ),

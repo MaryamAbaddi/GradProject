@@ -18,14 +18,12 @@ class AddtocartDatasrcimp implements AddtocartDatasrcmeth {
   Future<AddtocartOutput> addtocart(AddtocartInput input) async {
   final snapshot = await firebase.collection('General').doc(input.itemId).get();
   final data = snapshot.data();
-  final name = data?['Title'] ?? data?['serviceType'];
-  final price = data?['price'] ?? data?['priceService'];
-
-  await firebase.collection('users').doc(uid).collection('cart').add({
+  await firebase.collection('users').doc(uid).collection('Cart').add({
     'itemId': input.itemId,
-    'name': name,
-    'price': price,
+    'name': data?['Title'] ?? data?['serviceType'],
+    'price':  data?['price'] ?? data?['priceService'],
+    'image': data?['ImageURL'],
   });
   return AddtocartOutput(success: true);
-}
+  }
 }

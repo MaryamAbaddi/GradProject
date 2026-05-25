@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/features/signup/domain/signup_entites/signup_in_entities.dart';
 import 'package:makanek/features/signup/domain/signup_entites/signup_out_entity.dart';
@@ -19,7 +20,8 @@ class SignUpBloc extends Bloc<SignupEvent, SignupState> {
           password: event.password,
           username: event.username, uid: event.uid,
         );
-        final result = await signupUsecase(input); 
+        final result = await signupUsecase(input);
+        await FirebaseAuth.instance.currentUser!.sendEmailVerification(); 
         emit(SignupSuccess( signupOutEntity: result));
       } catch (e) {
         emit(SignupError(e.toString()));

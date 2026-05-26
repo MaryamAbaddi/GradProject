@@ -10,3 +10,4 @@ extension FitContext on BuildContext {
   double get vertical     => screenHeight * 0.06;
   double get spacer => screenHeight / 30;
 }
+

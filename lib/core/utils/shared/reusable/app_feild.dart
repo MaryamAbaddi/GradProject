@@ -4,19 +4,20 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 
 class AppFeild extends StatelessWidget {
 
 final String? Function(String?)? validator;
  final TextEditingController controller;
+ final BorderSide? borderSide;
  final double buttonWidth;
  final double buttonHeight;
   final TextInputType keyboardType;
   final TextInputAction action;
   final String hintText;
+  final Color? fillColor;
 
-  const AppFeild({super.key, required this.controller, required this.keyboardType, required this.action, required this.hintText, this.validator, required this.buttonWidth, required this.buttonHeight});
+  const AppFeild({super.key, required this.controller, required this.keyboardType, required this.action, required this.hintText, this.validator, required this.buttonWidth, required this.buttonHeight, this.fillColor, this.borderSide});
 
   @override 
   Widget build(BuildContext context)
@@ -31,13 +32,21 @@ final String? Function(String?)? validator;
       textInputAction: action,
       decoration: InputDecoration(
       filled: true,
-      fillColor: const Color.fromARGB(234, 228, 228, 228),
-      hint: AppText(text: hintText,fontWeight: FontWeight.w400,textColor:Colors.grey,),
+      fillColor: fillColor?? const Color.fromARGB(234, 228, 228, 228),
+     hintText: hintText,
+      hintStyle: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide.none
-      )
+        borderSide: borderSide ?? BorderSide.none,
       ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: borderSide ?? BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: borderSide ?? BorderSide.none,
+      ),)
     ));  
 
   }

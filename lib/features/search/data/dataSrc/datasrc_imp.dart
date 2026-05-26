@@ -11,27 +11,34 @@ class DatasrcImp implements DatasrcMeth{
   final FirebaseFirestore firestore;
   DatasrcImp({required this.firestore});
 
-   @override
-  Future<List<SearchResultEntity>> search(SearchInentity input) async {
-    final byTitle = await firestore
-        .collection('posts')           
-        .where('title', isGreaterThanOrEqualTo: input.query)
-        .where('title', isLessThanOrEqualTo: '${input.query}\uf8ff')
-        .get();
+  @override
+Future<List<SearchResultEntity>> search(SearchInentity input) async {
+  final byTitle = await firestore
+      .collection('General')
+      .where('Title', isGreaterThanOrEqualTo: input.query)
+      .where('Title', isLessThanOrEqualTo: '${input.query}\uf8ff')
+      .get();
 
-      final byBody = await firestore
-        .collection('posts')
-        .where('body', isGreaterThanOrEqualTo: input.query)
-        .where('body', isLessThanOrEqualTo: '${input.query}\uf8ff')
-        .get();
-        final all = {...byTitle.docs, ...byBody.docs};
+  final byServiceType = await firestore
+      .collection('General')
+      .where('serviceType', isGreaterThanOrEqualTo: input.query)
+      .where('serviceType', isLessThanOrEqualTo: '${input.query}\uf8ff')
+      .get();
 
-    return all.map((doc) => SearchResultEntity(
-      id: doc.id,
-      title: doc['title'],
-      body: doc['body'],
-    )).toList();
-  } 
+  final products = byTitle.docs.map((doc) => SearchResultEntity(
+        id: doc.id,
+        title: doc['title'],
+        type: 'product',
+      )).toList();
+
+  final services = byServiceType.docs.map((doc) => SearchResultEntity(
+        id: doc.id,
+        title: doc['serviceType'],
+        type: 'service',
+      )).toList();
+
+  return [...products, ...services];
+}
 
 }
 

@@ -12,7 +12,7 @@ class InputFeild extends StatelessWidget {
   final void Function(String)? onChanged;
   final double? width;
   final FocusNode? focusNode;
-  final bool hideBorder; // 👈 add this
+  final bool hideBorder; 
 
   const InputFeild({
     super.key,
@@ -27,7 +27,7 @@ class InputFeild extends StatelessWidget {
     this.onChanged,
     this.width,
     this.focusNode,
-    this.hideBorder = false, // 👈 default: border is shown
+    this.hideBorder = false,
   });
 
   @override

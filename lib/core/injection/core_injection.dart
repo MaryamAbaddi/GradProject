@@ -16,6 +16,7 @@ import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
 import 'package:makanek/core/injection/getproduct_injection.dart';
 import 'package:makanek/core/injection/getservice_injection.dart';
+import 'package:makanek/core/injection/search_injection.dart';
 import 'package:makanek/core/injection/verifybyid_inection.dart';
 import 'package:makanek/core/theme/them_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,14 +31,11 @@ Future<void> setupDi() async {
   try {
     final prefs = await SharedPreferences.getInstance();
 
-    // Core Singletons
     getIt.registerSingleton(prefs);
     getIt.registerSingleton(FirebaseAuth.instance);
     getIt.registerLazySingleton(() => FirebaseFirestore.instance);
     getIt.registerLazySingleton<ConnectivityCubit>(() => ConnectivityCubit());
     getIt.registerSingleton<ThemeCubit>(ThemeCubit(prefs)); 
-
-    // Feature Initializations
     initLoginInjection();
     initSignupInjection();
     initOnboardingInjection();
@@ -57,6 +55,7 @@ Future<void> setupDi() async {
     initGetcartInjection();
     initVerifybyidInjection();
     initForgetpasswordInjection();
+    initSearchInjection();
     
   } catch (e) {
     print("DI SETUP CRITICAL ERROR: $e");

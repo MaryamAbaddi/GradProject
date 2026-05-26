@@ -8,6 +8,9 @@ import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart';
 import 'package:makanek/features/login/presentation/pages/login_screen.dart';
 import 'package:makanek/features/main/presentation/pages/main_container.dart';
 import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.dart';
+import 'package:makanek/features/payment/payment_page.dart';
+import 'package:makanek/features/search/domain/entities/search_outentity.dart';
+import 'package:makanek/features/search/presentation/widget/search_results.dart';
 import 'package:makanek/features/signup/presentation/pages/signup_screen.dart';
 import 'package:makanek/features/splash/splash.dart';
 import 'package:makanek/features/verificationpage/presentation/page/verifybyid_page.dart';
@@ -30,7 +33,12 @@ class AppRoutes {
   static const courses1 = '/courses1';
   static const editProfile = '/editProfile';
   static const verify  = '/verify';
-    static const verifyId  = '/verifyId';
+  static const verifyId  = '/verifyId';
+  static const payment = '/payment';
+  static const search = '/search';
+
+  
+
 
   
 
@@ -66,6 +74,13 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const Waitonveriifcation());
       case verifyId:
         return MaterialPageRoute(builder: (_) => const VerifybyidPage());
+      case payment:
+        return MaterialPageRoute(builder: (_) => const PaymentPage());
+      case search:
+        final results = settings.arguments as List<SearchResultEntity>;
+        return MaterialPageRoute(
+          builder: (_) => SearchResults(results: results),
+        );  
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

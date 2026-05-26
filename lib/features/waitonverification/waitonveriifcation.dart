@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:makanek/core/routes/routes.dart';
+import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 
 class Waitonveriifcation extends StatefulWidget {
@@ -36,16 +37,26 @@ class _WaitonveriifcationState extends State<Waitonveriifcation> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return  Center(
+    return Scaffold(
+      backgroundColor: colors.surface,
+      body:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AppTitle(size: 30, title: "Check your email", weight: FontWeight.bold, titleColor: colors.primary, textAlign: TextAlign.center),
-            const SizedBox(height: 20),
-            CircularProgressIndicator(color: colors.primary),
+          AppTitle(size: 30, title: "Check your email", weight: FontWeight.bold, titleColor: colors.primary, textAlign: TextAlign.center),
+          const SizedBox(height: 20),
+          CircularProgressIndicator(color: colors.primary),
+          SizedBox(height: context.vertical*2,),
+          Button(onPressed: () async{
+          _timer?.cancel();
+          await FirebaseAuth.instance.signOut();
+          Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+          },
+          textColor: colors.onPrimary, borderRadius: 24, fontSize: 18, text: "Cancel", buttonWidth: context.buttonSize, buttonHeight: context.buttonSizeH, fontWeight: FontWeight.bold, elevation: 4)
           ],
         ),
-      );
+      )
+    );
   }
 }

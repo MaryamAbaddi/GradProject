@@ -13,7 +13,7 @@ class AppTheme {
     ),
   );
 
-  static ThemeData get darkTheme => ThemeData(
+static ThemeData get darkTheme => ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
       primary: Color.fromARGB(255, 180, 80, 100),

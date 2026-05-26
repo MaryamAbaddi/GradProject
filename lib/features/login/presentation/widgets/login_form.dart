@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/routes/routes.dart';
+import 'package:makanek/core/utils/google_helper.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
+import 'package:makanek/features/forgetpassword/presentation/cubit/forgetpassword_cubit.dart';
 import 'package:makanek/features/login/presentation/bloc/login_bloc.dart';
 
 
@@ -66,7 +69,19 @@ class _LoginFormState extends State<LoginForm> {
             action: TextInputAction.next,
             obscureText: true,
             suffix: TextButton(
-              onPressed: () {},
+              onPressed: () async 
+              {
+                            if (_emailController.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Please enter your email first')),
+                );
+                return;
+              }
+              await getIt<ForgetpasswordCubit>().forgetPassword(_emailController.text);
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Password reset email sent!')),
+              );
+              },
               child: AppText(
                 text: 'Forgot?',
                 textSize: 12,
@@ -102,8 +117,16 @@ class _LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height:context.spacer*0.5),
           Button(
-            // ignore: avoid_print
-            onPressed: () => print("Google Login Tapped"),
+          onPressed: () async {
+            try {
+              await signInWithGoogle();
+              Navigator.pushReplacementNamed(context, AppRoutes.main);
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(e.toString())),
+              );
+            }
+          },
             buttonColor: colors.secondary,
             textColor: colors.onSecondary,
             borderRadius: 34,

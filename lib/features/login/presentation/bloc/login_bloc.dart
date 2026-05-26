@@ -13,7 +13,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginSubmit>((event, emit) async {
       emit(const LoginLoading());
       try {
-        final result = await loginUseCase(  
+        final result = await loginUseCase(
           LoginInputEntity(
             email: event.username,
             password: event.password,

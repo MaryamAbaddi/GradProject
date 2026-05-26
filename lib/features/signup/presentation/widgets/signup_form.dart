@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/routes/routes.dart';
+import 'package:makanek/core/utils/google_helper.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
@@ -119,7 +120,16 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             SizedBox(height: context.spacer * 0.5),
             Button(
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  await signInWithGoogle();
+                  Navigator.pushReplacementNamed(context, AppRoutes.main);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(e.toString())),
+                  );
+                }
+              },
               buttonColor: colors.secondary,
               textColor: colors.onSecondary,
               borderRadius: 24,

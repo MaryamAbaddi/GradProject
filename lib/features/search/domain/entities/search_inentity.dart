@@ -3,7 +3,7 @@
 
 
 class SearchInentity {
-  final String query;  // 👈 the text user types in search bar
+  final String query;  
 
   const SearchInentity({
     required this.query,

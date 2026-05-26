@@ -5,6 +5,7 @@ import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
+import 'package:makanek/features/ads/ads_banner.dart';
 import 'package:makanek/features/category/presentation/pages/category_page.dart';
 import 'package:makanek/features/dropdownmenu/dropdown.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
@@ -75,13 +76,16 @@ class _HomePageState extends State<HomePage> {
                     ]),
                   ),
                   SizedBox(height: context.vertical * 0.2),
-                  SearchBarWidget(
+                 SearchBarWidget(
                     controller: _searchController,
                     onChanged: (value) {
+                      if (value.isEmpty) {
+                        context.read<SearchBloc>().add(const SearchFinished());
+                      }
+                    },
+                    onSubmitted: (value) {
                       if (value.length >= 3) {
                         context.read<SearchBloc>().add(SearchStarted(query: value));
-                      } else {
-                        context.read<SearchBloc>().add(const SearchFinished());
                       }
                     },
                   ),
@@ -99,6 +103,17 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       CategoryPage(),
+                      SizedBox(height: context.vertical),
+                       Padding(
+                        padding: EdgeInsets.symmetric(horizontal: context.horizontal,vertical: context.vertical/2.5),
+                        child: AppText(
+                          text: 'Explore',
+                          textSize: 10,
+                          textAlign: TextAlign.left,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      AdsBanner(),
                     ],
                   ),
                 ],

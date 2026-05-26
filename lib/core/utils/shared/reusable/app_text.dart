@@ -8,7 +8,7 @@ class AppText extends StatelessWidget {
   final Color? textColor;
   final TextAlign? textAlign;
 
-  const AppText({
+  const AppText( {
     super.key,
     required this.text,
     this.fontWeight,

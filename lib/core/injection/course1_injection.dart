@@ -1,8 +1,8 @@
 import 'package:makanek/core/injection/core_injection.dart';
-import 'package:makanek/features/coursepage1/data/repoimp/course1_repoimp.dart';
-import 'package:makanek/features/coursepage1/domain/repo/course1_repo.dart';
-import 'package:makanek/features/coursepage1/domain/usecase/course1_usecase.dart';
-import 'package:makanek/features/coursepage1/presentation/bloc/course1_bloc.dart';
+import 'package:makanek/features/coursepage/data/repoimp/course1_repoimp.dart';
+import 'package:makanek/features/coursepage/domain/repo/course1_repo.dart';
+import 'package:makanek/features/coursepage/domain/usecase/course1_usecase.dart';
+import 'package:makanek/features/coursepage/presentation/bloc/course1_bloc.dart';
 
 
 void initCourse1Injection() {

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:makanek/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:makanek/core/injection/addcomment_injection.dart';
+import 'package:makanek/core/injection/addcourse_injection.dart';
 import 'package:makanek/core/injection/addpost_injection.dart';
 import 'package:makanek/core/injection/addservice_injection.dart';
 import 'package:makanek/core/injection/addtocart_injection.dart';
@@ -56,6 +57,7 @@ Future<void> setupDi() async {
     initVerifybyidInjection();
     initForgetpasswordInjection();
     initSearchInjection();
+    initAddCourseInjection();
     
   } catch (e) {
     print("DI SETUP CRITICAL ERROR: $e");

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:makanek/features/coursepage1/presentation/page/course1_page.dart';
+import 'package:makanek/features/coursepage/presentation/page/course1_page.dart';
 import 'package:makanek/features/editprofilepage/presentation/page/editprofile_page.dart';
 import 'package:makanek/features/getproduct/presentation/page/getproduct_page.dart';
 import 'package:makanek/features/getservice/presentation/page/getservice_page.dart';

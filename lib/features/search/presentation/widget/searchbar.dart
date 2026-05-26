@@ -4,11 +4,15 @@ import 'package:makanek/core/utils/responisve_utils.dart';
 class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String) onChanged;
+    final void Function(String) onSubmitted;
+
+
 
   const SearchBarWidget({
     super.key,
     required this.controller,
-    required this.onChanged,
+    required this.onChanged, 
+    required this.onSubmitted,
   });
 
   @override
@@ -18,7 +22,7 @@ class SearchBarWidget extends StatelessWidget {
     height: context.screenHeight/24,
     child:
     SearchBar(
-      
+  onSubmitted: onSubmitted,
   controller: controller,
   onChanged: onChanged,
   hintText: 'Search for crafts, communities, or workshops...',
@@ -32,7 +36,7 @@ class SearchBarWidget extends StatelessWidget {
   backgroundColor: const WidgetStatePropertyAll(
     Color.fromARGB(244, 232, 229, 229),                                          
   ),
-  shape:  WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+  shape:  WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
   padding: const WidgetStatePropertyAll(
     EdgeInsets.symmetric(horizontal: 16),
   ),

@@ -11,6 +11,7 @@ class AppCard extends StatelessWidget{
   final String imagePath;
   final String title;
   final String body; 
+  final VoidCallback? onEnroll;
   final bool flag;
 
   const AppCard({
@@ -18,7 +19,7 @@ class AppCard extends StatelessWidget{
  this.flag = false,
   required this.body,
   required this.imagePath,
-  required this.title,
+  required this.title, this.onEnroll,
 });
   
   @override 
@@ -41,18 +42,19 @@ class AppCard extends StatelessWidget{
         SizedBox(width:20),
         Expanded( 
       child:Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           SizedBox(height:15),
         AppTitle(size: 20, title: title, weight: FontWeight.bold, titleColor:Colors.black, textAlign: TextAlign.start),
-        AppText(text: body,textAlign: TextAlign.start,textSize: 12,),
+        Flexible(
+        child: AppText(text: body,textAlign: TextAlign.start,textSize: 12,),),
         Row(children: [Spacer(),
-        flag 
-  ? TextButton(onPressed: () {}, child: Button( isText: true,textColor: colors.primary, fontSize: 16, text:'Enroll', borderRadius: 0, buttonWidth: 0, buttonHeight: 0, fontWeight: FontWeight.bold, elevation: 12,))
-  : IconButton(onPressed: () {}, icon: Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary))
-         ],)]
-        )
+                flag 
+          ? TextButton(onPressed: onEnroll, child: Button( isText: true,textColor: colors.primary, fontSize: 16, text:'Enroll', borderRadius: 0, buttonWidth: 0, buttonHeight: 0, fontWeight: FontWeight.bold, elevation: 12,))
+          : IconButton(onPressed: () {}, icon: Icon(Icons.keyboard_arrow_right_rounded, color: colors.primary))
+                ],)]
+                )
       )]
         
       )

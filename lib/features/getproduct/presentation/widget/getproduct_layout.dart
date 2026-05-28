@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +15,11 @@ import 'package:makanek/features/addproduct/domain/entity/addproduct_output.dart
 import 'package:makanek/features/addtocart/presentation/cubit/addtocart_cubit.dart';
 
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
+import 'package:makanek/features/getname/presentation/pages/getowner.dart';
 
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_bloc.dart';
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_event.dart';
+import 'package:makanek/features/getproduct/presentation/widget/filter_product.dart';
 
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
@@ -43,28 +46,37 @@ class ProductsLayout extends StatelessWidget {
               vertical: 8,
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppTitle(
-                  size: 35,
-                  title: 'Products',
-                  weight: FontWeight.bold,
-                  titleColor: colors.primary,
-                  textAlign: TextAlign.start,
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.add_circle_rounded,
-                    color: colors.primary,
-                    size: 50,
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    AppTitle(
+      size: 35,
+      title: 'Products',
+      weight: FontWeight.bold,
+      titleColor: colors.primary,
+      textAlign: TextAlign.start,
+    ),
+                  Row(
+                    children: [
+                      ProductFilter(
+                        onFilterChanged: (filter) {
+                          final uid = FirebaseAuth.instance.currentUser!.uid;
+                          context.read<GetproductBloc>().add(FilterProduct(
+                            filter: filter,
+                            currentUserId: uid,
+                          ));
+                        },
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: Icon(Icons.add_circle_rounded, color: colors.primary, size: 50),
+                        onPressed: () => ProductDialog.showAddProductDialog(context),
+                      ),
+                    ],
                   ),
-                  onPressed: () =>
-                      ProductDialog.showAddProductDialog(context),
-                ),
-              ],
-            ),
+                ],
+              ),
           ),
-
           Expanded(
             child: BlocBuilder<AvatarCubit, AvatarEntity?>(
               builder: (context, avatarState) {
@@ -123,14 +135,8 @@ class ProductsLayout extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Getname(
-                                          showHi: false,
-                                          fontWeight:
-                                              FontWeight.bold,
-                                          textSize: 16,
-                                          textColor:
-                                              colors.primary,
-                                        ),
+                                        OwnerName(ownerId: product.ownerId)
+
                                       ],
                                     ),
                                   ),

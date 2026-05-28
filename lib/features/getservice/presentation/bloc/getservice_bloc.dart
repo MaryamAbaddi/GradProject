@@ -16,13 +16,27 @@ class GetserviceBloc extends Bloc<GetserviceEvents,GetserviceState>{
     emit(LoadingGetService());
     try{
       final service = await usecase.call();
-      print('are you hereeee?');
       emit(SuccessGetService(services: service));
 
     }
     catch(e){
       print('Error');
        emit(ErrorGetService(message: e.toString()));
+      }
+      }
+    );
+    on<FilterService>((event,emit) async{
+      emit(LoadingGetService());
+      try {
+        final services = await usecase.call();
+        final filtered = event.filter == null
+            ? services
+            : event.filter == 'My things'
+                ? services.where((s) => s.ownerId == event.currentUserId).toList()
+                : services.where((s) => s.serviceType.toLowerCase() == event.filter!.toLowerCase()).toList();
+        emit(SuccessGetService(services: filtered));
+      } catch (e) {
+        emit(ErrorGetService(message: e.toString()));
       }
       }
     );

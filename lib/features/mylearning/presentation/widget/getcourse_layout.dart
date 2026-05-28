@@ -4,6 +4,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:makanek/core/utils/responisve_utils.dart';
+import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/mylearning/domain/entity/getcourses_output.dart';
 
 class GetcourseLayout extends StatelessWidget {
@@ -19,29 +21,37 @@ class GetcourseLayout extends StatelessWidget {
       return const Center(child: Text('No courses enrolled yet'));
     }
 
-    return ListView.builder(
-      itemCount: courses.length,
-      itemBuilder: (context, index) {
-        final course = courses[index];
-        return Card(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ListTile(
-            leading: Image.asset(
-              course.imagePath,
-              width: 50,
-              height: 50,
-              fit: BoxFit.cover,
-            ),
-            title: Text(
-              course.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: colors.primary,
-              ),
-            ),
-          ),
-        );
-      },
-    );
+   return ListView.builder(
+  itemCount: courses.length,
+  itemBuilder: (context, index) {
+    final course = courses[index];
+    return Container(
+      width: context.horizontal,
+      height: context.vertical*2,
+      margin: EdgeInsets.zero,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: const Color.fromARGB(255, 219, 219, 219), width: 1),
+      ),
+      child: Padding(padding: EdgeInsets.all(16),child:
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children:[Image.asset(
+          course.imagePath,
+          width: 50,
+          height: 50,
+          fit: BoxFit.cover,
+        ),
+        SizedBox(width: context.horizontal/2,),
+        AppText(
+            text: course.title,
+            fontWeight: FontWeight.bold,
+            textColor: colors.primary,
+          ),]
+        ),
+      ));
+  });
   }
 }
+

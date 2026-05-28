@@ -5,6 +5,7 @@ import 'package:makanek/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:makanek/core/injection/addcomment_injection.dart';
 import 'package:makanek/core/injection/addcourse_injection.dart';
 import 'package:makanek/core/injection/addpost_injection.dart';
+import 'package:makanek/core/injection/addpurchases_injection.dart';
 import 'package:makanek/core/injection/addservice_injection.dart';
 import 'package:makanek/core/injection/addtocart_injection.dart';
 import 'package:makanek/core/injection/avatar_injection.dart';
@@ -16,7 +17,9 @@ import 'package:makanek/core/injection/getcartitems_injction.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
 import 'package:makanek/core/injection/getproduct_injection.dart';
+import 'package:makanek/core/injection/getpurchases_injection.dart';
 import 'package:makanek/core/injection/getservice_injection.dart';
+import 'package:makanek/core/injection/mylearning_injection.dart';
 import 'package:makanek/core/injection/search_injection.dart';
 import 'package:makanek/core/injection/verifybyid_inection.dart';
 import 'package:makanek/core/theme/them_cubit.dart';
@@ -58,7 +61,9 @@ Future<void> setupDi() async {
     initForgetpasswordInjection();
     initSearchInjection();
     initAddCourseInjection();
-    
+    initMyLearningInjection();
+    initAddPurchasesInjection();
+    initGetpurchasesInjection();
   } catch (e) {
     print("DI SETUP CRITICAL ERROR: $e");
   }

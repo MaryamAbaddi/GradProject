@@ -19,53 +19,48 @@ class GetproductPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => getIt<GetproductBloc>()
-            ..add(GetproductFetched()),
+          create: (_) => getIt<GetproductBloc>()..add(GetproductFetched()),
         ),
         BlocProvider(
           create: (_) => getIt<AvatarCubit>()..getAvatar(),
         ),
       ],
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+      child: Builder(
+        builder: (context) => Scaffold(
           backgroundColor: Colors.white,
-           leadingWidth: 90,
-          titleSpacing: 50,
-          leading:  Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: GestureDetector(
-            onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
-            child: Row(children: [
-              Icon(Icons.arrow_back_ios, color: colors.primary),
-              AppText(text: 'Back', fontWeight: FontWeight.bold, textColor: colors.primary, textSize: 16),
-            ]),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            leadingWidth: 90,
+            titleSpacing: 50,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: GestureDetector(
+                onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
+                child: Row(children: [
+                  Icon(Icons.arrow_back_ios, color: colors.primary),
+                  AppText(text: 'Back', fontWeight: FontWeight.bold, textColor: colors.primary, textSize: 16),
+                ]),
+              ),
+            ),
           ),
-        ),
-        ),
-        body: BlocConsumer<GetproductBloc, GetproductState>(
-          listener: (context, state) {
-            if (state is GetproductError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is GetproductLoading) {
-              return Center(
-                child: CircularProgressIndicator(color: colors.primary),
-              );
-            }
-
-            if (state is GetproductSuccess) {
-              return ProductsLayout(products: state.product);
-            }
-
-           
-
-            return const SizedBox();
-          },
+          body: BlocConsumer<GetproductBloc, GetproductState>(
+            listener: (context, state) {
+              if (state is GetproductError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is GetproductLoading) {
+                return Center(child: CircularProgressIndicator(color: colors.primary));
+              }
+              if (state is GetproductSuccess) {
+                return ProductsLayout(products: state.product);
+              }
+              return const SizedBox();
+            },
+          ),
         ),
       ),
     );

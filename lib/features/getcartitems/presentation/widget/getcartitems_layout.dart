@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
+import 'package:makanek/features/addpurchases/presentation/cubit/addpurchases_cubit.dart';
 import 'package:makanek/features/deleteitemfromcart/presentation/cubit/deletefromcart_cubit.dart';
 import 'package:makanek/features/getcartitems/domain/entity/getcartitems_output.dart';
 import 'package:makanek/features/getcartitems/presentation/bloc/getcartitems_bloc.dart';
@@ -163,7 +165,12 @@ class _GetcartitemsLayoutState extends State<GetcartitemsLayout> {
       ),
       Button(
         onPressed: () async {
-          Navigator.pushReplacementNamed(context, AppRoutes.payment);
+          for (final item in widget.items) {
+          await getIt<AddPurchasesCubit>().addPurchase(
+          item.name,
+          item.price.toDouble(),
+          item.image,
+      );}
         },
         text: 'Pay ${total.toStringAsFixed(2)} JOD',
         textColor: colors.onPrimary,
@@ -177,7 +184,6 @@ class _GetcartitemsLayoutState extends State<GetcartitemsLayout> {
     ],
   ),
 ),
-
       ],
     );
   }

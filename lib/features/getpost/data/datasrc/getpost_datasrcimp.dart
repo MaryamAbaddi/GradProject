@@ -7,8 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/getpost/data/datasrc/getpost_datasrcmeth.dart';
 
-
-
 class GetpostDatasrcimp implements GetpostDatasrcmeth {
   final FirebaseFirestore firestore;
 
@@ -28,7 +26,7 @@ class GetpostDatasrcimp implements GetpostDatasrcmeth {
         body: data['content'] as String? ?? '',
        imageUrl: data['ImageURL'],
         createdAt: (data['CreatedAt'] as Timestamp).toDate(), 
-        uid: data['userId'],
+        uid: data['OwnerId'],
       );
     }).toList();
   }

@@ -25,7 +25,7 @@ class AddserviceBloc extends Bloc<AddserviceEvent, AddserviceState> {
         final input = AddserviceInput(
           serviceType: event.serviceType,
           phoneNumber: event.phoneNumber,
-          priceService: event.price,
+          priceService: event.price, 
         );
 
         final result = await usecase.calls(input);

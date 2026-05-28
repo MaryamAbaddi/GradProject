@@ -12,6 +12,14 @@ class GetserviceEvents extends Equatable {
 
 
 class GetServiceDataFetch extends GetserviceEvents{
+}
 
-  
+class FilterService extends GetserviceEvents {
+  final String? filter;
+  final String? currentUserId;
+
+  const FilterService({this.filter, this.currentUserId});
+
+  @override
+  List<Object?> get props => [filter, currentUserId];
 }

@@ -20,15 +20,17 @@ class AddProductDatasrcimp implements AddproductDatasrcmeth {
     await ref.putFile(File(input.imagePath));
     final imageUrl = await ref.getDownloadURL();
 
-    final docRef = await firestore.collection('General').add({
+    final docRef = firestore.collection('General').doc();
+    await docRef.set({
       'Title': input.title,
       'description': input.body,
       'ImageURL': imageUrl,
       'OwnerId': uid,
       'price': input.price,
+      'productId': docRef.id,
+      'type': 'product',
+      'productType':input.productType
     });
-
-    await docRef.update({'productId': docRef.id});
 
     return AddproductOutput(
       body: input.body,
@@ -36,6 +38,7 @@ class AddProductDatasrcimp implements AddproductDatasrcmeth {
       id: docRef.id,
       title: input.title,
       price: input.price,
+      ownerId: uid, productType: input.productType,
     );
   }
 }

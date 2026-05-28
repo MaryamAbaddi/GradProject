@@ -27,7 +27,7 @@ class AddpostDatasrcimp  implements AddpostDatasrcmeth{
       'content': input.body,
       'ImageURL': imageUrl,
       'CreatedAt': FieldValue.serverTimestamp(),
-      'userId':uid
+      'OwnerId':uid
     });
     return OutputEntity(body: input.body, imageUrl: imageUrl, id: docRef.id, createdAt: DateTime.now(), uid: uid);
   }

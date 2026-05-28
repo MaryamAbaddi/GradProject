@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/core/utils/shared/reusable/service_dialoge.dart';
 import 'package:makanek/features/addservice/domain/entity/addservice_output.dart';
+import 'package:makanek/features/addtocart/presentation/cubit/addtocart_cubit.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
+import 'package:makanek/features/getname/presentation/pages/getowner.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_bloc.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_events.dart';
+import 'package:makanek/features/getservice/presentation/widget/service_filter.dart';
 import 'package:makanek/features/profileavatar/domain/entity/avatar_entity.dart';
 import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 
@@ -24,7 +29,7 @@ class ServicesLayout extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AppTitle(
                 size: 35,
@@ -33,7 +38,17 @@ class ServicesLayout extends StatelessWidget {
                 titleColor: colors.primary,
                 textAlign: TextAlign.start,
               ),
+              Spacer(),
+              ServiceFilter(
+                onFilterChanged: (filter) {
+                  final uid = FirebaseAuth.instance.currentUser!.uid;
+                  context.read<GetserviceBloc>().add(FilterService(
+                    filter: filter,
+                    currentUserId: uid,
+                  ));}),
               IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
                 icon: Icon(Icons.add_circle_rounded, color: colors.primary, size: 50),
                 onPressed: () => ServiceDialog.showAddServiceDialog(context),
               ),
@@ -80,13 +95,13 @@ class ServicesLayout extends StatelessWidget {
                                         avatarState?.initial ?? '?',
                                         style: const TextStyle(
                                           color: Colors.white,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.bold, 
                                           fontSize: 16,
                                         ),
                                       ),
                                     ),
                                     const SizedBox(width: 8),
-                                    Getname(showHi: false),
+                                    OwnerName(ownerId: service.ownerId)
                                   ],
                                 ),
                                 const SizedBox(height: 12),
@@ -119,7 +134,33 @@ class ServicesLayout extends StatelessWidget {
                               bottom: 0,
                               right: 0,
                               child: Button(
-                                onPressed: () {},
+                               onPressed: () async {
+                                            try {
+                                              await getIt<AddtocartCubit>().addtocart(service.id,);
+                                              if (context
+                                                  .mounted) {
+                                                ScaffoldMessenger.of(
+                                                        context)
+                                                    .showSnackBar(
+                                                  const SnackBar(
+                                                    content: Text(
+                                                      'Added to cart',
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            } catch (e) {
+                                              if (context
+                                                  .mounted) {
+                                                ScaffoldMessenger.of(
+                                                        context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      e.toString(),
+                                                    ),
+                                                  ),
+                                );}}},
                                 text: 'Book',
                                 textColor: colors.onPrimary,
                                 borderRadius: 28,

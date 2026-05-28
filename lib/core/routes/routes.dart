@@ -7,6 +7,7 @@ import 'package:makanek/features/home/presentation/widgets/homepage_layout.dart'
 import 'package:makanek/features/getpost/presentation/pages/getpost_page.dart';
 import 'package:makanek/features/login/presentation/pages/login_screen.dart';
 import 'package:makanek/features/main/presentation/pages/main_container.dart';
+import 'package:makanek/features/mylearning/presentation/page/getcourse_page.dart';
 import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.dart';
 import 'package:makanek/features/payment/payment_page.dart';
 import 'package:makanek/features/search/domain/entities/search_outentity.dart';
@@ -36,6 +37,7 @@ class AppRoutes {
   static const verifyId  = '/verifyId';
   static const payment = '/payment';
   static const search = '/search';
+  static const mylearning = 'mylearning';
 
   
 
@@ -80,7 +82,10 @@ class AppRoutes {
         final results = settings.arguments as List<SearchResultEntity>;
         return MaterialPageRoute(
           builder: (_) => SearchResults(results: results),
-        );  
+        ); 
+      case mylearning:
+        return MaterialPageRoute(builder: (_) => const GetcoursePage());
+
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

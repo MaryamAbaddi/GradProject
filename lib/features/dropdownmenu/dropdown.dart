@@ -33,6 +33,11 @@ class UserDropdownMenu extends StatelessWidget {
           ]),
         ),
         PopupMenuItem(
+        value: 'my learning',
+        onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.mylearning),
+        child: AppText(text: 'My learning')),
+
+        PopupMenuItem(
           value: 'logout',
           onTap: () => logout(context),
           child: Row(children: [

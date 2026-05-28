@@ -6,26 +6,29 @@ import 'package:makanek/features/addservice/domain/entity/addservice_output.dart
 
 class AddserviceDatasrcimp implements AddserviceDatasrcmeth {
   final FirebaseFirestore firestore;
-    final uid = FirebaseAuth.instance.currentUser!.uid;
+  final uid = FirebaseAuth.instance.currentUser!.uid;
 
   AddserviceDatasrcimp({required this.firestore});
 
   @override
   Future<AddserviceOutput> addService(AddserviceInput input) async {
-    final doc = await firestore.collection('General').add({
+    final docRef = firestore.collection('General').doc();
+    await docRef.set({
+      'type':'service',
       'serviceType': input.serviceType,
       'phoneNumber': input.phoneNumber,
       'priceService': input.priceService,
-      'OwnerId':uid,
-     });
-     await doc.update({'serviceId': doc.id});
-
+      'serviceId': docRef.id,
+      'OwnerId': uid,
+    });
 
     return AddserviceOutput(
-      id: doc.id,
+      id: docRef.id,
       serviceType: input.serviceType,
       phoneNumber: input.phoneNumber,
       price: input.priceService,
+      ownerId: uid,
+
     );
   }
 }

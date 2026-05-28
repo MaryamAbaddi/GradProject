@@ -9,14 +9,28 @@ class GetproductBloc extends Bloc<GetproductEvent, GetproductState> {
   final GetprodcutUsecase usecase;
 
   GetproductBloc({required this.usecase}) : super(const GetproductInitial()) {
-    on<GetproductFetched>((event, emit) async {
+  on<GetproductFetched>((event, emit) async {
   emit(const GetproductLoading());
   try {
-    final product = await usecase.call();
-    emit(GetproductSuccess(product: product));
-  } catch (e) {
+      final product = await usecase.call();
+      emit(GetproductSuccess(product: product));
+    } catch (e) {
+      emit(GetproductError(message: e.toString()));
+    }
+  });
+  on<FilterProduct>((event, emit) async {
+  emit(const GetproductLoading());
+  try {
+    final products = await usecase.call();
+    final filtered = event.filter == null
+        ? products
+        : event.filter == 'My things'
+            ? products.where((p) => p.ownerId == event.currentUserId).toList()
+            : products.where((p) => p.productType.toLowerCase() == event.filter!.toLowerCase()).toList();
+        emit(GetproductSuccess(product: filtered));
+  }catch(e){
     emit(GetproductError(message: e.toString()));
   }
-});
+  });
   }
 }

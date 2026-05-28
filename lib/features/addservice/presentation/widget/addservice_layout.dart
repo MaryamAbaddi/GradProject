@@ -121,7 +121,7 @@ class _AddServiceFormState extends State<AddServiceForm> {
                       context.read<AddserviceBloc>().add(AddserviceSubmitted(
                         serviceType: _serviceTypeController.text,
                         phoneNumber: _phoneNumberController.text,
-                        price: double.parse(_priceController.text),
+                        price: double.parse(_priceController.text), 
                       ));
                     }
                   },

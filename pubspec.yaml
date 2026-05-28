@@ -54,6 +54,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   dotted_border: ^2.1.0
+  intl: ^0.19.0
 
 
 
@@ -107,6 +108,7 @@ flutter:
     - assets/images/mom.jpeg
     - assets/images/doc.jpeg
     - assets/images/cook.png
+    - assets/images/serviceIcon.png
 
 
 

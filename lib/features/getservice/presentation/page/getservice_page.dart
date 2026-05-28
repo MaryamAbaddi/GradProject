@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
@@ -25,51 +24,54 @@ class GetservicePage extends StatelessWidget {
           create: (_) => getIt<AvatarCubit>()..getAvatar(),
         ),
       ],
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+      child: Builder(
+        builder: (context) => Scaffold(
           backgroundColor: Colors.white,
-          elevation: 0,
-          leadingWidth: 90,
-          titleSpacing: 0,
-          leading: GestureDetector(
-          onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Row(
-                children: [
-                  Icon(Icons.arrow_back_ios, color: colors.primary, size: 18),
-                  AppText(
-                    text: 'Back',
-                    fontWeight: FontWeight.bold,
-                    textColor: colors.primary,
-                    textSize: 18,
-                  ),
-                ],
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leadingWidth: 90,
+            titleSpacing: 0,
+            leading: GestureDetector(
+              onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.main),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Row(
+                  children: [
+                    Icon(Icons.arrow_back_ios, color: colors.primary, size: 18),
+                    AppText(
+                      text: 'Back',
+                      fontWeight: FontWeight.bold,
+                      textColor: colors.primary,
+                      textSize: 18,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ), 
-        body: BlocConsumer<GetserviceBloc, GetserviceState>(
-          listener: (context, state) {
-            if (state is ErrorGetService) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is LoadingGetService) {
-              return Center(
-                child: CircularProgressIndicator(color: colors.primary),
-              );
-            }
-            if (state is SuccessGetService) {
-              return ServicesLayout(services: state.services);
-            }
-            return SizedBox();
-          }
+          body: BlocConsumer<GetserviceBloc, GetserviceState>(
+            listener: (context, state) {
+              if (state is ErrorGetService) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is LoadingGetService) {
+                return Center(
+                  child: CircularProgressIndicator(color: colors.primary),
+                );
+              }
+              if (state is SuccessGetService) {
+                return ServicesLayout(services: state.services);
+              }
+              return const SizedBox();
+            },
+          ),
+        ),
       ),
-    ));
+    );
   }
 }

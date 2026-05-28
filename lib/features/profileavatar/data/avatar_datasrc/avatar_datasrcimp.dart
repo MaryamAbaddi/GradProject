@@ -15,8 +15,6 @@ class AvatarDatasrcimp  implements AvatarDatasrcmeth{
   Future<AvatarEntity> getInit() async {
     final uid = firebaseAuth.currentUser!.uid;
     final doc = await firestore.collection('users').doc(uid).get();
-     print('Doc exists: ${doc.exists}');
-        print('Data: ${doc.data()}');
     final name = doc['UserName'] as String;
     final initial = name[0].toUpperCase();
     return AvatarEntity(initial: initial);

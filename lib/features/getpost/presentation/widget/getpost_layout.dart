@@ -3,10 +3,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/core/utils/shared/reusable/post_dialog.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
+import 'package:makanek/features/getcomments/presentation/bloc/getcomment_bloc.dart';
+import 'package:makanek/features/getcomments/presentation/bloc/getcomment_event.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
 import 'package:makanek/features/getpost/presentation/widget/postpopup_menu.dart';
@@ -65,11 +68,11 @@ class CommunityLayout extends StatelessWidget {
 
                     return GestureDetector(
                       onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => PostDetailPage(post: post),
-                        ),
-                      ),
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider(
+                              create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(post.id)),
+                              child: PostDetailPage(post: post),))),
                       child: Card(
                         key: ValueKey(index),
                         color: Colors.white,
@@ -166,7 +169,14 @@ class CommunityLayout extends StatelessWidget {
                                 children: [
                                   Icon(Icons.favorite_border, color: colors.onSurface),
                                   const SizedBox(width: 16),
-                                  Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
+                                  IconButton(
+                                  icon: Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => BlocProvider(
+                                        create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(post.id)),
+                                        child: PostDetailPage(post: post),))))
                                 ],
                               ),
                             ],

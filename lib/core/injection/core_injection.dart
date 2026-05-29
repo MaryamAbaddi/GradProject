@@ -14,6 +14,7 @@ import 'package:makanek/core/injection/editprofile_injection.dart';
 import 'package:makanek/core/injection/forgetpassword_injection.dart';
 import 'package:makanek/core/injection/gaddproduct_injection.dart';
 import 'package:makanek/core/injection/getcartitems_injction.dart';
+import 'package:makanek/core/injection/getcomment_injection.dart';
 import 'package:makanek/core/injection/getname_injection.dart';
 import 'package:makanek/core/injection/getpost_injection.dart';
 import 'package:makanek/core/injection/getproduct_injection.dart';
@@ -64,6 +65,7 @@ Future<void> setupDi() async {
     initMyLearningInjection();
     initAddPurchasesInjection();
     initGetpurchasesInjection();
+    initGetCommentInjection();
   } catch (e) {
     print("DI SETUP CRITICAL ERROR: $e");
   }

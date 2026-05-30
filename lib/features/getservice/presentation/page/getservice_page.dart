@@ -7,7 +7,6 @@ import 'package:makanek/features/getservice/presentation/bloc/getservice_bloc.da
 import 'package:makanek/features/getservice/presentation/bloc/getservice_events.dart';
 import 'package:makanek/features/getservice/presentation/bloc/getservice_state.dart';
 import 'package:makanek/features/getservice/presentation/widget/getservice_layout.dart';
-import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 
 class GetservicePage extends StatelessWidget {
   const GetservicePage({super.key});

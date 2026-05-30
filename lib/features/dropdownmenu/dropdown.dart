@@ -34,14 +34,6 @@ class UserDropdownMenu extends StatelessWidget {
           ]),
         ),
         PopupMenuItem(
-        value: 'my learning',
-        onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.mylearning),
-        child: Row(children: [
-        Icon(Icons.book, weight: 500, size: 20, color: colors.primary),
-        SizedBox(width: 8),
-        AppText(text: 'My learning',fontWeight: FontWeight.w400, textColor: colors.primary,textSize: 14 ,),
-      ])),
-        PopupMenuItem(
           value: 'logout',
           onTap: () => logout(context),
           child: Row(children: [

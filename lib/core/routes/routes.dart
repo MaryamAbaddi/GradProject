@@ -12,6 +12,7 @@ import 'package:makanek/features/onboarding/presentation/pages/onboard_screen.da
 import 'package:makanek/features/payment/payment_page.dart';
 import 'package:makanek/features/search/domain/entities/search_outentity.dart';
 import 'package:makanek/features/search/presentation/widget/search_results.dart';
+import 'package:makanek/features/settings/presentation/aboutus.dart';
 import 'package:makanek/features/signup/presentation/pages/signup_screen.dart';
 import 'package:makanek/features/splash/splash.dart';
 import 'package:makanek/features/verificationpage/presentation/page/verifybyid_page.dart';
@@ -25,7 +26,7 @@ class AppRoutes {
   static const logIn = '/login';
   static const onBoard = '/onboard';
   static const home = '/home';
-  static const setting = '/settings';
+  static const aboutus = '/Aboutus';
   static const addPost = '/addPost';
   static const getPost = '/getPost';
   static const main = '/main';
@@ -48,8 +49,8 @@ class AppRoutes {
     switch (settings.name) {
       case splash:
         return MaterialPageRoute(builder: (_) => const Splash());
-      //case setting:
-        //return MaterialPageRoute(builder: (_) => const SettingScreen());
+      case aboutus:
+        return MaterialPageRoute(builder: (_) => const Aboutus());
       case welcome:
         return MaterialPageRoute(builder: (_) => const WelcomePage());
       case main:

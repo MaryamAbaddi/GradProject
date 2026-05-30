@@ -10,9 +10,9 @@ class SearchResults extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: colors.surface,
+      backgroundColor: colors.onPrimary,
       appBar: AppBar(
-        backgroundColor: colors.surface,
+        backgroundColor: colors.onPrimary,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: colors.primary),
           onPressed: () => Navigator.pop(context),

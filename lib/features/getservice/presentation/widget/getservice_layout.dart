@@ -106,9 +106,9 @@ class ServicesLayout extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 8),
                                       OwnerName(ownerId: service.ownerId),
-                                      SizedBox(width: context.vertical),
+                                      Spacer(),
                                       if (service.ownerId == FirebaseAuth.instance.currentUser?.uid)
-                                        DeleteAction(serviceId: service.id),
+                                          DeleteAction(serviceId: service.id),
                                     ],
                                   ),
                                   const SizedBox(height: 12),
@@ -140,7 +140,8 @@ class ServicesLayout extends StatelessWidget {
                               Positioned(
                                 bottom: 0,
                                 right: 0,
-                                child: Button(
+                              child: 
+                                 Button(
                                   onPressed: () async {
                                     try {
                                       await getIt<AddtocartCubit>().addtocart(service.id);
@@ -165,7 +166,7 @@ class ServicesLayout extends StatelessWidget {
                                   elevation: 0,
                                   buttonWidth: 80,
                                   buttonHeight: 34,
-                                ),
+                          )
                               ),
                             ],
                           ),

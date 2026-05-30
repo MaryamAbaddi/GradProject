@@ -12,6 +12,7 @@ import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';
 import 'package:makanek/features/search/presentation/bloc/search_bloc.dart';
 import 'package:makanek/features/search/presentation/widget/searchbar.dart';
+import 'package:makanek/features/settings/presentation/setting.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.white,
               title: SvgPicture.asset('assets/images/logo.svg', width: 45),
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () => SettingsDrawer.show(context),
                 icon: Icon(Icons.settings, color: colors.primary),
                 iconSize: 30,
               ),

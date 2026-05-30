@@ -7,7 +7,6 @@ import 'package:makanek/features/getproduct/presentation/bloc/getproduct_bloc.da
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_event.dart';
 import 'package:makanek/features/getproduct/presentation/bloc/getproduct_state.dart';
 import 'package:makanek/features/getproduct/presentation/widget/getproduct_layout.dart';
-import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 
 class GetproductPage extends StatelessWidget {
   const GetproductPage({super.key});

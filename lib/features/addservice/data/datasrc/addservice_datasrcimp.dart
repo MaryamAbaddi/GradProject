@@ -16,6 +16,7 @@ class AddserviceDatasrcimp implements AddserviceDatasrcmeth {
     await docRef.set({
       'type':'service',
       'serviceType': input.serviceType,
+      'serviceTypeLower':input.serviceType.toLowerCase(),
       'phoneNumber': input.phoneNumber,
       'priceService': input.priceService,
       'serviceId': docRef.id,

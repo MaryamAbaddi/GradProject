@@ -10,7 +10,6 @@ import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
 import 'package:makanek/features/getpost/presentation/widget/getpost_layout.dart';
-import 'package:makanek/features/profileavatar/presentation/cubit/avatar_cubit.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({super.key});

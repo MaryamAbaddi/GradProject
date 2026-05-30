@@ -23,13 +23,16 @@ class AddProductDatasrcimp implements AddproductDatasrcmeth {
     final docRef = firestore.collection('General').doc();
     await docRef.set({
       'Title': input.title,
+      'TitleLower': input.title.toLowerCase(),
       'description': input.body,
       'ImageURL': imageUrl,
       'OwnerId': uid,
       'price': input.price,
       'productId': docRef.id,
       'type': 'product',
-      'productType':input.productType
+      'productType':input.productType,
+
+
     });
 
     return AddproductOutput(

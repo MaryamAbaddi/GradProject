@@ -17,14 +17,14 @@ Future<List<SearchResultEntity>> search(SearchInentity input) async {
 
   final byTitle = await firestore
       .collection('General')
-      .where('Title', isGreaterThanOrEqualTo: query)
-      .where('Title', isLessThanOrEqualTo: '$query\uf8ff')
+      .where('TitleLower', isGreaterThanOrEqualTo: query)
+      .where('TitleLower', isLessThanOrEqualTo: '$query\uf8ff')
       .get();
 
   final byServiceType = await firestore
       .collection('General')
-      .where('serviceType', isGreaterThanOrEqualTo: query)
-      .where('serviceType', isLessThanOrEqualTo: '$query\uf8ff')
+      .where('serviceTypeLower', isGreaterThanOrEqualTo: query)
+      .where('serviceTypeLower', isLessThanOrEqualTo: '$query\uf8ff')
       .get();
 
   final all = {...byTitle.docs, ...byServiceType.docs};

@@ -7,9 +7,9 @@ class AvatarCubit extends Cubit<AvatarEntity?> {
 
   AvatarCubit({required this.usecase}) : super(null);
 
-  Future<void> getAvatar() async {
+  Future<void> getAvatar({String? ownerId}) async {
     try {
-      final result = await usecase.call();
+      final result = await usecase.call(ownerId: ownerId);
       emit(result);
     } catch (e) {
       emit(AvatarEntity(initial: '?'));

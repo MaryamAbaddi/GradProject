@@ -29,14 +29,18 @@ class UserDropdownMenu extends StatelessWidget {
           onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.editProfile),
           child: Row(children: [
             Icon(Symbols.person, weight: 500, size: 20),
+            SizedBox(width: 8),
             AppText(text: 'profile', fontWeight: FontWeight.w400, textColor: colors.primary),
           ]),
         ),
         PopupMenuItem(
         value: 'my learning',
         onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.mylearning),
-        child: AppText(text: 'My learning')),
-
+        child: Row(children: [
+        Icon(Icons.book, weight: 500, size: 20, color: colors.primary),
+        SizedBox(width: 8),
+        AppText(text: 'My learning',fontWeight: FontWeight.w400, textColor: colors.primary,textSize: 14 ,),
+      ])),
         PopupMenuItem(
           value: 'logout',
           onTap: () => logout(context),

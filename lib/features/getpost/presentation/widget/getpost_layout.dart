@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
@@ -10,7 +7,7 @@ import 'package:makanek/core/utils/shared/reusable/post_dialog.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/getcomments/presentation/bloc/getcomment_bloc.dart';
 import 'package:makanek/features/getcomments/presentation/bloc/getcomment_event.dart';
-import 'package:makanek/features/getname/presentation/pages/getname.dart';
+import 'package:makanek/features/getname/presentation/pages/getowner.dart';
 import 'package:makanek/features/getpost/presentation/bloc/getpost_bloc.dart';
 import 'package:makanek/features/getpost/presentation/widget/postpopup_menu.dart';
 import 'package:makanek/features/postdetailpage/presentation/widget/postdetailpage.dart';
@@ -53,141 +50,143 @@ class CommunityLayout extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: BlocBuilder<AvatarCubit, AvatarEntity?>(
-            builder: (context, avatarState) {
-              return RefreshIndicator(
-                onRefresh: () async {
-                  context.read<GetpostBloc>().add(const GetPostsFetched());
-                },
-                child: ListView.builder(
-                  padding: const EdgeInsets.all(16),
-                  cacheExtent: 500,
-                  itemCount: posts.length,
-                  itemBuilder: (context, index) {
-                    final post = posts[index];
-
-                    return GestureDetector(
-                      onTap: () => Navigator.push(
+          child: RefreshIndicator(
+            onRefresh: () async {
+              context.read<GetpostBloc>().add(const GetPostsFetched());
+            },
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16),
+              cacheExtent: 500,
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                final post = posts[index];
+                return BlocProvider(
+                  create: (_) => getIt<AvatarCubit>()..getAvatar(ownerId: post.uid),
+                  child: BlocBuilder<AvatarCubit, AvatarEntity?>(
+                    builder: (context, avatarState) {
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (_) => BlocProvider(
-                              create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(post.id)),
-                              child: PostDetailPage(post: post),))),
-                      child: Card(
-                        key: ValueKey(index),
-                        color: Colors.white,
-                        margin: const EdgeInsets.only(bottom: 12),
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(color: colors.primary, width: 1),
+                              create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(postId: post.id)),
+                              child: PostDetailPage(post: post),
+                            ),
+                          ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // header row
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 18,
-                                    backgroundColor: colors.primary,
-                                    child: Text(
-                                      avatarState?.initial ?? '?',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                        child: Card(
+                          key: ValueKey(post.id),
+                          color: Colors.white,
+                          margin: const EdgeInsets.only(bottom: 12),
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            side: BorderSide(color: colors.primary, width: 1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 18,
+                                      backgroundColor: colors.primary,
+                                      child: Text(
+                                        avatarState?.initial ?? '?',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Getname(
-                                          showHi: false,
-                                          fontWeight: FontWeight.bold,
-                                          textSize: 16,
-                                          textColor: colors.primary,
-                                        ),
-                                        AppText(text: timeago.format(post.createdAt)),
-                                      ],
-                                    ),
-                                  ),
-                                  PostPopupMenu(post: post),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              // body row
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: AppText(
-                                      text: post.body,
-                                      fontWeight: FontWeight.w400,
-                                      textSize: 14,
-                                      textAlign: TextAlign.start,
-                                      textColor: colors.onSurface.withValues(alpha: 0.7),
-                                    ),
-                                  ),
-                                  if (post.imageUrl != null && post.imageUrl!.trim().isNotEmpty) ...[
                                     const SizedBox(width: 8),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: CachedNetworkImage(
-                                        imageUrl: post.imageUrl!.trim(),
-                                        height: 80,
-                                        width: 80,
-                                        fit: BoxFit.cover,
-                                        memCacheHeight: 200,
-                                        memCacheWidth: 200,
-                                        fadeInDuration: Duration.zero,
-                                        fadeOutDuration: Duration.zero,
-                                        placeholder: (context, url) => const SizedBox(
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          OwnerName(ownerId: post.uid),
+                                          AppText(text: timeago.format(post.createdAt)),
+                                        ],
+                                      ),
+                                    ),
+                                    PostPopupMenu(post: post),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: AppText(
+                                        text: post.body,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 14,
+                                        textAlign: TextAlign.start,
+                                        textColor: colors.onSurface.withValues(alpha: 0.7),
+                                      ),
+                                    ),
+                                    if (post.imageUrl != null && post.imageUrl!.trim().isNotEmpty) ...[
+                                      const SizedBox(width: 8),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: CachedNetworkImage(
+                                          imageUrl: post.imageUrl!.trim(),
                                           height: 80,
                                           width: 80,
-                                          child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                                          fit: BoxFit.cover,
+                                          memCacheHeight: 200,
+                                          memCacheWidth: 200,
+                                          fadeInDuration: Duration.zero,
+                                          fadeOutDuration: Duration.zero,
+                                          placeholder: (context, url) => const SizedBox(
+                                            height: 80,
+                                            width: 80,
+                                            child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                                          ),
+                                          errorWidget: (context, url, error) => Container(
+                                            height: 80,
+                                            width: 80,
+                                            color: Colors.grey.shade200,
+                                            child: const Icon(Icons.broken_image),
+                                          ),
                                         ),
-                                        errorWidget: (context, url, error) => Container(
-                                          height: 80,
-                                          width: 80,
-                                          color: Colors.grey.shade200,
-                                          child: const Icon(Icons.broken_image),
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Row(
+                                  children: [
+                                    Icon(Icons.favorite_border, color: colors.onSurface),
+                                    const SizedBox(width: 16),
+                                    IconButton(
+                                      icon: Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
+                                      onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => BlocProvider(
+                                            create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(postId: post.id)),
+                                            child: PostDetailPage(post: post),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ],
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              Row(
-                                children: [
-                                  Icon(Icons.favorite_border, color: colors.onSurface),
-                                  const SizedBox(width: 16),
-                                  IconButton(
-                                  icon: Icon(Icons.chat_bubble_outline_rounded, color: colors.onSurface),
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => BlocProvider(
-                                        create: (_) => getIt<GetcommentBloc>()..add(GetcommentSubmitted(post.id)),
-                                        child: PostDetailPage(post: post),))))
-                                ],
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ],

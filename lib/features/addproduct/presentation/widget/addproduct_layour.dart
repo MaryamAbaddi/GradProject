@@ -51,8 +51,7 @@ class _AddProductFormState extends State<AddProductForm> {
     final colors = Theme.of(context).colorScheme;
     return Form(
       key: _formKey,
-      child: SizedBox(
-        height: 420,
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,49 +78,46 @@ class _AddProductFormState extends State<AddProductForm> {
                 border: InputBorder.none,
               ),
             ),
-            SizedBox(
-              width: context.buttonSize,
-              height: context.buttonSizeH,
-              child: DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromARGB(234, 228, 228, 228),
-                  hintText: 'Product Type',
-                  hintStyle: const TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w400),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                        color: Color.fromARGB(0, 255, 255, 255), width: 0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide:
-                        const BorderSide(color: Colors.white, width: 1.5),
-                  ),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: const Color.fromARGB(234, 228, 228, 228),
+                hintText: 'Product Type',
+                hintStyle: const TextStyle(
+                    color: Colors.grey, fontWeight: FontWeight.w400),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'Food', child: Text('Food')),
-                  DropdownMenuItem(value: 'Clothes', child: Text('Clothes')),
-                  DropdownMenuItem(value: 'Crafts', child: Text('Crafts')),
-                ],
-                validator: (value) {
-                  if (value == null || value.isEmpty)
-                    return 'Product type is required';
-                  return null;
-                },
-                onChanged: (value) {
-                  if (value != null) {
-                    setState(() => _selectedProductType = value);
-                  }
-                },
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                      color: Color.fromARGB(0, 255, 255, 255), width: 0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide:
+                      const BorderSide(color: Colors.white, width: 1.5),
+                ),
               ),
+              items: const [
+                DropdownMenuItem(value: 'Food', child: Text('Food')),
+                DropdownMenuItem(value: 'Clothes', child: Text('Clothes')),
+                DropdownMenuItem(value: 'Crafts', child: Text('Crafts')),
+              ],
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Product type is required';
+                }
+                return null;
+              },
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() => _selectedProductType = value);
+                }
+              },
             ),
             const SizedBox(height: 8),
             AppFeild(
@@ -131,14 +127,14 @@ class _AddProductFormState extends State<AddProductForm> {
               action: TextInputAction.done,
               validator: (value) {
                 if (value == null || value.isEmpty) return 'Price is required';
-                if (double.tryParse(value) == null)
+                if (double.tryParse(value) == null ||
+                    double.tryParse(value)! <= 0) {
                   return 'Enter a valid number';
+                }
                 return null;
               },
-              buttonWidth: context.buttonSize,
-              buttonHeight: context.buttonSizeH,
             ),
-            const Spacer(),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

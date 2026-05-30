@@ -15,6 +15,11 @@ class GetproductFetched extends GetproductEvent {
   const GetproductFetched();
 }
 
+class DeleteProductEvent extends GetproductEvent{
+  final String productId;
+  const DeleteProductEvent({required this.productId});
+}
+
 class FilterProduct extends GetproductEvent {
   final String? filter;
   final String? currentUserId;

@@ -1,12 +1,7 @@
 
 
 
-/*class InputEntity {
-  final String title; 
-  final String body;
-  const InputEntity({required this.body,
-  required this.title});
-}*/
+
 
 
 class InputEntity {

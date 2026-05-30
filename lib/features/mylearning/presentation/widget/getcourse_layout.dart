@@ -4,9 +4,13 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
+import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/mylearning/domain/entity/getcourses_output.dart';
+import 'package:makanek/features/mylearning/presentation/bloc/getcourse_bloc.dart';
+import 'package:makanek/features/mylearning/presentation/bloc/getcourse_event.dart';
 
 class GetcourseLayout extends StatelessWidget {
   final List<GetcoursesOutput> courses;
@@ -48,7 +52,13 @@ class GetcourseLayout extends StatelessWidget {
             text: course.title,
             fontWeight: FontWeight.bold,
             textColor: colors.primary,
-          ),]
+          ),
+          Spacer(),
+          Button(onPressed: (){
+            context.read<GetcourseBloc>().add(DeleteCoure(title: course.title));
+          },
+            isText: true,textColor: colors.primary, borderRadius: 0, fontSize: 10, text: "Unenroll", buttonWidth: 0, buttonHeight: 0, fontWeight: FontWeight.bold, elevation: 0)
+          ]
         ),
       ));
   });

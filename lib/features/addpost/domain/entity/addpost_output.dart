@@ -7,14 +7,7 @@
 
 
 
-/*class OutputEntity {
-  final int id;
-  final String title; 
-  final String body;
-  const OutputEntity({required this.body,
-  required this.title,
-  required this.id});
-}*/
+
 
 class OutputEntity {
   final String id;

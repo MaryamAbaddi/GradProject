@@ -15,15 +15,9 @@ class GetservicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return MultiBlocProvider(
-      providers: [
+    return 
         BlocProvider(
           create: (_) => getIt<GetserviceBloc>()..add(GetServiceDataFetch()),
-        ),
-        BlocProvider(
-          create: (_) => getIt<AvatarCubit>()..getAvatar(),
-        ),
-      ],
       child: Builder(
         builder: (context) => Scaffold(
           backgroundColor: Colors.white,

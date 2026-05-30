@@ -16,5 +16,11 @@ class GetcommentBloc extends Bloc<GetcommentEvent, GetcommentState> {
         emit(GetcommentError( message: 'An error occured!'));
       }
     });
+    on<AddCommentToList>((event, emit) {
+  if (state is GetcommentSuccess) {
+    final current = (state as GetcommentSuccess).comments;
+    emit(GetcommentSuccess([...current, event.comment]));
+  }
+  });
   }
 }

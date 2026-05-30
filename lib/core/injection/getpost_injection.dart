@@ -39,7 +39,7 @@ void initGetPostInjection() {
   );
 
   getIt.registerLazySingleton<DeleteDatasrcmeth>(
-    () => DeleteDatasrcimp(firestore: FirebaseFirestore.instance),
+    () => DeleteDatasrcimp(),
   );
   getIt.registerLazySingleton<DeleteRepo>(
     () => DeleteRepoimp(datasrc: getIt<DeleteDatasrcmeth>()),

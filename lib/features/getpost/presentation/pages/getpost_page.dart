@@ -21,16 +21,10 @@ class CommunityPage extends StatelessWidget {
     final isOffline = context.read<ConnectivityCubit>().state 
         is ConnectivityDisconnected;
 
-    return MultiBlocProvider(
-      providers: [
+    return
         BlocProvider(
           create: (_) => getIt<GetpostBloc>()
             ..add(GetPostsFetched(isOffline: isOffline)),
-        ),
-        BlocProvider(
-          create: (_) => getIt<AvatarCubit>()..getAvatar(),
-        ),
-      ],
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(

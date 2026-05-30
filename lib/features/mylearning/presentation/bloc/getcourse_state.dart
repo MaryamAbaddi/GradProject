@@ -35,5 +35,18 @@ class GetcourseSuccess extends GetcourseState{
 }
 
 
+class DeletecourseError extends GetcourseState{
+  final String message;
+
+  const DeletecourseError({required this.message});
+  
+  @override
+  List<Object?> get props => [message];
+}
+
+class DeletecourseLoading extends GetcourseState{}
+
+
+
 
 

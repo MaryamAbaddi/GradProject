@@ -30,3 +30,15 @@ class SuccessGetService extends GetserviceState{
   @override 
   List<Object?> get props => [services];
 }
+
+class DeleteServiceLoading extends GetserviceState {
+  const DeleteServiceLoading();
+}
+class DeleteServiceSuccess extends GetserviceState {
+  const DeleteServiceSuccess();
+}
+
+class DeleteServiceError extends GetserviceState{
+  final String message;
+  const DeleteServiceError({required this.message});
+}

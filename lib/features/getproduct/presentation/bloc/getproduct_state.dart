@@ -30,3 +30,15 @@ class GetproductError extends GetproductState {
   @override
   List<Object?> get props => [message];
 }
+
+class DeleteProductLoading extends GetproductState {
+  const DeleteProductLoading();
+}
+class DeleteProductSuccess extends GetproductState {
+  const DeleteProductSuccess();
+}
+
+class DeleteProductError extends GetproductState{
+  final String message;
+  const DeleteProductError({required this.message});
+}

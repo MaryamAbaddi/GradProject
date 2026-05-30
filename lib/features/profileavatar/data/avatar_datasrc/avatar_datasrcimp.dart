@@ -12,8 +12,8 @@ class AvatarDatasrcimp  implements AvatarDatasrcmeth{
     required this.firestore
     ,required this.firebaseAuth});
   @override
-  Future<AvatarEntity> getInit() async {
-    final uid = firebaseAuth.currentUser!.uid;
+  Future<AvatarEntity> getInit({String? ownerId}) async {
+      final uid = ownerId ?? firebaseAuth.currentUser!.uid;
     final doc = await firestore.collection('users').doc(uid).get();
     final name = doc['UserName'] as String;
     final initial = name[0].toUpperCase();
@@ -23,9 +23,3 @@ class AvatarDatasrcimp  implements AvatarDatasrcmeth{
   
 }
 
-/*class AvatarDatasrcimp  implements AvatarDatasrcmeth{
-  @override
-  Future<AvatarEntity> getInit() async {
-    return AvatarEntity(initial: 'J');
-  }
-}*/

@@ -14,6 +14,11 @@ class GetserviceEvents extends Equatable {
 class GetServiceDataFetch extends GetserviceEvents{
 }
 
+class DeleteServiceEvent extends GetserviceEvents{
+  final String serviceId;
+  const DeleteServiceEvent({required this.serviceId});
+}
+
 class FilterService extends GetserviceEvents {
   final String? filter;
   final String? currentUserId;

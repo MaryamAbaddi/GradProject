@@ -11,8 +11,8 @@ import 'package:makanek/features/profileavatar/domain/repo/avatar_repo.dart';
   const AvatarRepoimp({required this.datasrc});
 
   @override 
-  Future<AvatarEntity> getInit() async
+  Future<AvatarEntity> getInit({String? ownerId}) async
   {
-    return datasrc.getInit();
+    return datasrc.getInit(ownerId: ownerId);
   }
 } 

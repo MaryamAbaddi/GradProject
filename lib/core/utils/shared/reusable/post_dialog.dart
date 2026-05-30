@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
 import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
@@ -52,33 +50,85 @@ class PostDialog {
       ),
     );
   }
-  static void showEditPost(BuildContext context, OutputEntity post, Function(String) onSave) {
-        final colors = Theme.of(context).colorScheme;
 
+  static void showEditPost(BuildContext context, OutputEntity post, Function(String) onSave) {
+    final colors = Theme.of(context).colorScheme;
     final controller = TextEditingController(text: post.body);
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: colors.onPrimary,
-        title: const Text('Edit Post'),
-        content: TextField(
-          controller: controller,
-          maxLines: 4,
-          decoration: const InputDecoration(hintText: 'Edit your post...'),
+        scrollable: true,
+        titlePadding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
+        contentPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 120),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+              onPressed: () => Navigator.of(dialogContext, rootNavigator: true).pop(),
+              icon: Icon(Icons.close, color: colors.onSurface, size: 16),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppTitle(
+                  size: 20,
+                  title: 'Edit post',
+                  weight: FontWeight.w400,
+                  titleColor: colors.primary,
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(width: context.spacer * 3.5),
+                AvatarWidget(raduis: 18, fontSize: 16),
+              ],
+            ),
+            Divider(thickness: 0.5, color: colors.onSurface.withValues(alpha: 0.1)),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('Cancel'),
+        content: SizedBox(
+          height: 300,
+          width: double.maxFinite,
+          child: Column(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: controller,
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                    hintText: 'Edit your post...',
+                    hintStyle: TextStyle(
+                      color: colors.primary,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14,
+                    ),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.of(dialogContext, rootNavigator: true).pop(),
+                    child: Text('Cancel', style: TextStyle(color: colors.primary)),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      onSave(controller.text.trim());
+                      Navigator.of(dialogContext, rootNavigator: true).pop();
+                    },
+                    child: Text('Save', style: TextStyle(color: colors.primary)),
+                  ),
+                ],
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              onSave(controller.text.trim());
-              Navigator.pop(dialogContext);
-            },
-            child: const Text('Save'),
-          ),
-        ],
+        ),
       ),
     );
   }

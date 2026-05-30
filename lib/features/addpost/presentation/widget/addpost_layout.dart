@@ -13,7 +13,6 @@ class AddPostForm extends StatefulWidget {
 }
 
 class _AddPostFormState extends State<AddPostForm> {
-  // final TextEditingController _titleController = TextEditingController();
   final TextEditingController _bodyController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   final _formKey = GlobalKey<FormState>();
@@ -21,7 +20,6 @@ class _AddPostFormState extends State<AddPostForm> {
 
   @override
   void dispose() {
-    //_titleController.dispose();
     _bodyController.dispose();
     super.dispose();
   }
@@ -46,32 +44,15 @@ class _AddPostFormState extends State<AddPostForm> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            /* SizedBox(height: context.spacer),
-            InputFeild(
-              controller: _titleController,
-              text: 'Title',
-              keyboardType: TextInputType.text,
-              action: TextInputAction.next,
-              validator: (value) {
-                if (value == null || value.isEmpty) return 'Title is required';
-                if (value.length < 3) return 'Title must be at least 3 characters';
-                return null;
-              },),*/
-            /*InputFeild(
-              controller: _bodyController,
-              text: "What's on your mind?",
-              keyboardType: TextInputType.multiline,
-              action: TextInputAction.newline,
-              validator: (value) {
-                if (value == null || value.isEmpty) return 'Body is required';
-                if (value.length < 10) return 'Body must be at least 10 characters';
-                return null;
-              },),*/
-            TextField(
+            TextFormField(
               controller: _bodyController,
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
               maxLines: 5,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) return 'Body cannot be empty';
+                return null;
+              },
               decoration: InputDecoration(
                 hintText: "What's on your mind?",
                 hintStyle: TextStyle(
@@ -81,6 +62,7 @@ class _AddPostFormState extends State<AddPostForm> {
                 ),
                 border: InputBorder.none,
               ),
+              
             ),
             const Spacer(),
             Row(
@@ -91,7 +73,7 @@ class _AddPostFormState extends State<AddPostForm> {
                   child: IconButton(
                     onPressed: _pickImage,
                     icon: Icon(
-                      Icons.photo_library,
+                        _imagePath != null ? Icons.check_circle : Icons.photo_library,
                       color: colors.primary,
                       size: 20,
                     ),

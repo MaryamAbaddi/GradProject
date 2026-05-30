@@ -16,15 +16,9 @@ class GetproductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return MultiBlocProvider(
-      providers: [
+    return 
         BlocProvider(
-          create: (_) => getIt<GetproductBloc>()..add(GetproductFetched()),
-        ),
-        BlocProvider(
-          create: (_) => getIt<AvatarCubit>()..getAvatar(),
-        ),
-      ],
+          create: (_) => getIt<GetproductBloc>()..add(GetproductFetched()),        
       child: Builder(
         builder: (context) => Scaffold(
           backgroundColor: Colors.white,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/addpurchases/domain/entity/addpurchases_output.dart';
 import 'package:makanek/features/getpurchases/presentation/bloc/getpurchases_bloc.dart';
@@ -32,6 +32,7 @@ class _GetpurchasesLayoutState extends State<GetpurchasesLayout> {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
+
             children: [
               AppTitle(
                 size: 35,
@@ -104,7 +105,7 @@ class _GetpurchasesLayoutState extends State<GetpurchasesLayout> {
                             ),
                           ],
                         ),
-                      ],
+                      ], 
                     ),
                   );
                 },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 import 'package:makanek/features/addpost/presentation/pages/addpost_page.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';

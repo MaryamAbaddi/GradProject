@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/features/addservice/presentation/page/addservice_page.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';
 

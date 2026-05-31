@@ -25,7 +25,7 @@ class SearchBarWidget extends StatelessWidget {
   onSubmitted: onSubmitted,
   controller: controller,
   onChanged: onChanged,
-  hintText: 'Search for crafts, communities, or workshops...',
+  hintText: 'Search for crafts, Food, or Services...',
   leading: Icon(Icons.search, color: colors.primary ), 
   hintStyle: const WidgetStatePropertyAll(
     TextStyle(color: Color.fromARGB(255, 112, 109, 109)),                         

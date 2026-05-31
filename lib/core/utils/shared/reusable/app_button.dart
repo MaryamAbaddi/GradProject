@@ -1,4 +1,4 @@
-part of '../Inpages/lib1.dart';
+part of 'lib1.dart';
 
 class Button extends StatelessWidget {
   final Color? buttonColor;

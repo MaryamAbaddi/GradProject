@@ -9,7 +9,8 @@ import 'package:makanek/features/getservice/presentation/bloc/getservice_state.d
 import 'package:makanek/features/getservice/presentation/widget/getservice_layout.dart';
 
 class GetservicePage extends StatelessWidget {
-  const GetservicePage({super.key});
+    final String? highlightId;
+  const GetservicePage({super.key, this.highlightId});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +59,7 @@ class GetservicePage extends StatelessWidget {
                 );
               }
               if (state is SuccessGetService) {
-                return ServicesLayout(services: state.services);
-              }
+              return ServicesLayout(services: state.services, highlightId: highlightId);              }
               return const SizedBox();
             },
           ),

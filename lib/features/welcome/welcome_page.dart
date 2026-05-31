@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 
 

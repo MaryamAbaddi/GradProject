@@ -9,7 +9,8 @@ import 'package:makanek/features/getproduct/presentation/bloc/getproduct_state.d
 import 'package:makanek/features/getproduct/presentation/widget/getproduct_layout.dart';
 
 class GetproductPage extends StatelessWidget {
-  const GetproductPage({super.key});
+      final String? highlightId;
+  const GetproductPage({super.key, this.highlightId});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class GetproductPage extends StatelessWidget {
                 return Center(child: CircularProgressIndicator(color: colors.primary));
               }
               if (state is GetproductSuccess) {
-                return ProductsLayout(products: state.product);
+                return ProductsLayout(products: state.product,highlightId: highlightId,);
               }
               return const SizedBox();
             },

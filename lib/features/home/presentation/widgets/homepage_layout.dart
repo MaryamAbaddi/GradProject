@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
             }
           },
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -91,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   SizedBox(height: context.vertical),
+                  Expanded(child:SingleChildScrollView(child:
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -117,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                       AdsBanner(),
                     ],
                   ),
-                ],
+              ))],
               ),
             ),
           ),

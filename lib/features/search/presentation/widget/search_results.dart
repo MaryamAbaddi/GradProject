@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:makanek/core/routes/routes.dart';
+import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/search/domain/entities/search_outentity.dart';
 
 class SearchResults extends StatelessWidget {
@@ -28,10 +30,27 @@ class SearchResults extends StatelessWidget {
                 return ListTile(
                   leading: Icon(
                     item.type == 'product' ? Icons.inventory_2 : Icons.build,
-                    color: colors.primary,
+                    color: colors.surface,
                   ),
-                  title: Text(item.title),
-                  subtitle: Text(item.type),
+                  title: AppText(text:item.title,fontWeight: FontWeight.bold,textColor: colors.primary,textAlign: TextAlign.start,),
+                  subtitle:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                     AppText(text:item.type,textColor: colors.primary,),
+                     Spacer(),
+                     AppText(text:item.price.toString(),textColor: colors.primary),
+                  ],),
+                  onTap: (){
+                  if (item.type == 'product') {
+                      Navigator.pushNamed(context, AppRoutes.product, arguments: item.id);
+                  }
+                  else 
+                    {
+                      Navigator.pushNamed(context, AppRoutes.service, arguments: item.id);
+                    }
+                  }
                 );
               },
             ),

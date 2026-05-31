@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/core/utils/shared/reusable/post_dialog.dart';
 import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';

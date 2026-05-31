@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/injection/core_injection.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_card.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/addcourses/presentation/cubit/addcourse_cubit.dart';

@@ -6,8 +6,8 @@ extension FitContext on BuildContext {
   double get screenHeight => MediaQuery.of(this).size.height;
   double get buttonSize   => screenWidth * 0.7;
   double get buttonSizeH  => screenHeight * 0.06;
-  double get horizontal   => screenWidth * 0.09;
-  double get vertical     => screenHeight * 0.06;
-  double get spacer => screenHeight / 30;
+  double get horizontal   => screenWidth * 0.09;//space
+  double get vertical     => screenHeight * 0.06;//space
+  double get spacer => screenHeight / 30;//space 
 }
 

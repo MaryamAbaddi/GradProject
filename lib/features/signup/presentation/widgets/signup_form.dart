@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/google_helper.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/signup/presentation/bloc/signup_bloc.dart';
 import 'package:makanek/features/signup/presentation/widgets/validation.dart';
@@ -54,7 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
     child: ConstrainedBox(
     constraints: BoxConstraints(
-    minHeight: MediaQuery.of(context).size.height,
+    minHeight:context.screenHeight,
     ),
     child: IntrinsicHeight( 
       child:

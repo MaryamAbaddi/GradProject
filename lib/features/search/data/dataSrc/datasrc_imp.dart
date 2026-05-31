@@ -32,10 +32,12 @@ Future<List<SearchResultEntity>> search(SearchInentity input) async {
   return all.map((doc) {
     final type = doc['type'] as String;
     final title = type == 'product' ? doc['Title'] : doc['serviceType'];
+    final price = type =='product' ? doc['price'] : doc['priceService'];
     return SearchResultEntity(
       id: doc.id,
       title: title,
-      type: type,
+      type: type, 
+      price: price,
     );
   }).toList();
 }

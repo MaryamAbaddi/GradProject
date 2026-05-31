@@ -66,9 +66,11 @@ class AppRoutes {
       case getPost: 
       return MaterialPageRoute(builder: (_) => const CommunityPage());
       case product:
-        return MaterialPageRoute(builder: (_) =>  GetproductPage());
-      case service:
-        return MaterialPageRoute(builder: (_) =>  GetservicePage());
+        final id = settings.arguments as String?;
+        return MaterialPageRoute(builder: (_) =>  GetproductPage(highlightId: id,));
+     case service:
+        final id = settings.arguments as String?;
+        return MaterialPageRoute(builder: (_) => GetservicePage(highlightId: id));
       case courses1:
         return MaterialPageRoute(builder: (_) => const Course1Page());
       case editProfile:

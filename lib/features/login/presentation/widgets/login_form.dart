@@ -4,7 +4,7 @@ import 'package:makanek/core/injection/core_injection.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/google_helper.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/forgetpassword/presentation/cubit/forgetpassword_cubit.dart';
 import 'package:makanek/features/login/presentation/bloc/login_bloc.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:makanek/core/routes/routes.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_text.dart';
 import 'package:makanek/features/getname/presentation/pages/getname.dart';
 import 'package:makanek/features/profileavatar/presentation/widget/avatar.dart';

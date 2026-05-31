@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makanek/core/utils/responisve_utils.dart';
-import 'package:makanek/core/utils/shared/Inpages/lib1.dart';
+import 'package:makanek/core/utils/shared/reusable/lib1.dart';
 import 'package:makanek/core/utils/shared/reusable/app_feild.dart';
 import 'package:makanek/features/addservice/presentation/bloc/addservice_bloc.dart';
 import 'package:makanek/features/addservice/presentation/bloc/addservice_events.dart';

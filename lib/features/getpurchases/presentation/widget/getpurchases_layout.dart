@@ -88,6 +88,7 @@ class _GetpurchasesLayoutState extends State<GetpurchasesLayout> {
                           child: AppText(
                             text: purchase.title,
                             fontWeight: FontWeight.bold,
+                            textAlign: TextAlign.start,
                           ),
                         ),
                         const SizedBox(width: 12),

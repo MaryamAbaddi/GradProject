@@ -147,7 +147,7 @@ class _GetcartitemsLayoutState extends State<GetcartitemsLayout> {
               selected: _selectedMethod,
               onChanged: (method) {
                 setState(() {
-                  _selectedMethod = method;
+                  _selectedMethod = method; 
                 });
               },
             ),

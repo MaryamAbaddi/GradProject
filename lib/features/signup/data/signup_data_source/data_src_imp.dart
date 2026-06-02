@@ -25,8 +25,6 @@ class AuthRemoteDataSrc implements DataSrcMeth {
         'UserName': input.username,
         'Email': input.email,
         'Role': 'User',
-        'Type': '',
-        'isVerified': false,
         'createdAt': FieldValue.serverTimestamp(),
       });
 

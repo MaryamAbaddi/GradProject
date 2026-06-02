@@ -10,12 +10,12 @@ import 'package:makanek/features/addtocart/domain/entity/addtocart_output.dart';
 
 class AddtocartDatasrcimp implements AddtocartDatasrcmeth {
   final FirebaseFirestore firebase;
-  final uid = FirebaseAuth.instance.currentUser!.uid;
 
 
   AddtocartDatasrcimp({required this.firebase});
   @override
   Future<AddtocartOutput> addtocart(AddtocartInput input) async {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
   final snapshot = await firebase.collection('General').doc(input.itemId).get();
   final data = snapshot.data();
   await firebase.collection('users').doc(uid).collection('Cart').add({

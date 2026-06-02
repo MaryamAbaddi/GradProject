@@ -104,6 +104,7 @@ class _ServicesLayoutState extends State<ServicesLayout> {
               controller: _scrollController,
               padding: const EdgeInsets.all(16),
               cacheExtent: 500,
+               physics: const AlwaysScrollableScrollPhysics(),
               itemCount: widget.services.length,
               itemBuilder: (context, index) {
                 final service = widget.services[index];

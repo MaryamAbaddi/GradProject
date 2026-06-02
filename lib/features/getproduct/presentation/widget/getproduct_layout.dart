@@ -113,6 +113,7 @@ class _ProductsLayoutState extends State<ProductsLayout> {
                 context.read<GetproductBloc>().add(const GetproductFetched());
               },
               child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
                 controller: _scrollController,
                 scrollCacheExtent: ScrollCacheExtent.pixels(500),
                 padding: const EdgeInsets.all(16),

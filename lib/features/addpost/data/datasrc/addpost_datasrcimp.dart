@@ -10,11 +10,12 @@ import 'package:makanek/features/addpost/domain/entity/addpost_output.dart';
 class AddpostDatasrcimp  implements AddpostDatasrcmeth{
   final FirebaseFirestore firestore;
   final FirebaseStorage storage;
-  final uid = FirebaseAuth.instance.currentUser!.uid;
  AddpostDatasrcimp({required this.firestore,required this.storage});
 
   @override
   Future<OutputEntity> addPost(InputEntity input) async {
+      final uid = FirebaseAuth.instance.currentUser!.uid;
+
     String? imageUrl;
 
     if(input.imagePath != null)
@@ -27,8 +28,9 @@ class AddpostDatasrcimp  implements AddpostDatasrcmeth{
       'content': input.body,
       'ImageURL': imageUrl,
       'CreatedAt': FieldValue.serverTimestamp(),
-      'OwnerId':uid
+      'OwnerId':uid,
+      'LikesCount' : 0,
     });
-    return OutputEntity(body: input.body, imageUrl: imageUrl, id: docRef.id, createdAt: DateTime.now(), uid: uid);
+    return OutputEntity(body: input.body, imageUrl: imageUrl, id: docRef.id, createdAt: DateTime.now(), uid: uid, likescount: 0);
   }
 }

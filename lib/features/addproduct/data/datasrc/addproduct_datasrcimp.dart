@@ -10,12 +10,12 @@ import 'package:makanek/features/addproduct/domain/entity/addproduct_output.dart
 class AddProductDatasrcimp implements AddproductDatasrcmeth {
   final FirebaseFirestore firestore;
   final FirebaseStorage storage;
-  final uid = FirebaseAuth.instance.currentUser!.uid;
 
   AddProductDatasrcimp({required this.firestore, required this.storage});
 
   @override
   Future<AddproductOutput> addProduct(AddproductInput input) async {
+      final uid = FirebaseAuth.instance.currentUser!.uid;
     final ref = storage.ref().child('General/${DateTime.now().millisecondsSinceEpoch}');
     await ref.putFile(File(input.imagePath));
     final imageUrl = await ref.getDownloadURL();

@@ -28,7 +28,7 @@ class GetpostLocalDatasrc {
       uid: item['uid'],
       body: item['body'],
       imageUrl: item['imageUrl'],
-      createdAt: DateTime.parse(item['createdAt']),
+      createdAt: DateTime.parse(item['createdAt']), likescount: item['LikesCount'],
     )).toList();
   }
 }

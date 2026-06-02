@@ -7,12 +7,12 @@ import 'package:intl/intl.dart';
 
 class AddpurchasesDatasrcimp implements AddpurchasesDatasrcmeth {
   final FirebaseFirestore firestore;
-  final user = FirebaseAuth.instance.currentUser!.uid;
 
   AddpurchasesDatasrcimp({required this.firestore});
 
   @override
   Future<Addpurchasesoutput> addPurchases(AddpurchasesInput input) async {
+    final user = FirebaseAuth.instance.currentUser!.uid;
     final docRef = firestore
         .collection('users')
         .doc(user)

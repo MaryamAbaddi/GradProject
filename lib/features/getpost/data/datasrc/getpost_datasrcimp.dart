@@ -22,6 +22,7 @@ class GetpostDatasrcimp implements GetpostDatasrcmeth {
     return snapshot.docs.map((doc) {
       final data = doc.data();
       return OutputEntity(
+        likescount: data['likesCount'] as int? ?? 0,
         id: doc.id,
         body: data['content'] as String? ?? '',
        imageUrl: data['ImageURL'],
